@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+{% block title %}{{ seccion.title }} · AuditSafe{% endblock %}
+{% block back %}<a class="btn btn-light fw-bold" href="{{ url_for('inicio') }}">← Volver al inicio</a>{% endblock %}
+
+{% block content %}
+{% if guardado %}
+  <div class="alert alert-success">✔ Formulario guardado correctamente.</div>
+{% endif %}
+
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+  <div>
+    <p class="small fw-bold text-uppercase text-primary mb-2">Cuestionario de inspección · {{ seccion.code }}</p>
+    <h1 class="display-6 fw-bolder text-navy">{{ seccion.title }}</h1>
+    <p class="text-secondary mb-0">Selecciona una respuesta y agrega una acción correctiva cuando sea necesario.</p>
+  </div>
+  <div class="card px-3 py-2" style="min-width:220px">
+    <div class="d-flex justify-content-between small fw-bold mb-2">
+      <span class="text-secondary">Progreso</span><span id="pct" class="text-primary">0%</span>
+    </div>
+    <div class="progress" style="height:6px">
+      <div id="bar-fill" class="progress-bar" style="width:0%"></div>
+    </div>
+  </div>
+</div>
+
+<form method="post" enctype="multipart/form-data" id="auditoria" data-total="{% set ns = namespace(total=0) %}{% for sub in seccion.subsecciones %}{% set ns.total = ns.total + sub.questions|length %}{% endfor %}{{ ns.total }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+  <!-- ============================================================== -->
+  <!-- CABECERA INSTITUCIONAL TEKNICA ELEVACION S.A.                    -->
+  <!-- ============================================================== -->
+  <div class="card mb-4 border-secondary shadow-sm">
+      <div class="card-body p-0">
+          <table class="table table-bordered border-dark mb-0 align-middle text-center" style="font-size: 0.9rem;">
+              <tbody>
+                  <!-- Fila de Logo y Título General -->
+                  <tr>
+                      <td class="align-middle bg-light" style="width: 25%;">
+                          <img src="{{ url_for('static', filename='img/teknicalogo.png') }}" alt="Teknica Elevación" class="img-fluid" style="max-height: 50px;">
+                      </td>
+                      <td colspan="3" class="bg-light align-middle">
+                          <h5 class="fw-bold mb-0 text-primary">VISITA DE SEGURIDAD E HIGIENE</h5>
+                          <h6 class="fw-bold mb-0 text-dark">TEKNICA ELEVACION S.A.</h6>
+                      </td>
+                  </tr>
+
+                  <!-- Fila 1: Fecha y Supervisor -->
+                  <tr>
+                      <th class="bg-light fw-bold text-start ps-3 align-middle" style="width: 15%;">Fecha:</th>
+                      <td style="width: 35%;">
+                          <input type="date" name="fecha" class="form-control form-control-sm border-0 bg-transparent text-center" value="{{ form.get('fecha', '') }}" required>
+                      </td>
+                      <th class="bg-light fw-bold text-start ps-3 align-middle" style="width: 15%;">Supervisor de la obra:</th>
+                      <td style="width: 35%;">
+                          <input type="text" name="supervisor_obra" class="form-control form-control-sm border-0 bg-transparent" placeholder="Ingrese nombre..." value="{{ form.get('supervisor_obra', '') }}" required>
+                      </td>
+                  </tr>
+
+                  <!-- Fila 2: Actividad y Participantes -->
+                  <tr>
+                      <th class="bg-light fw-bold text-start ps-3 align-middle">Actividad:</th>
+                      <td>
+                          <input type="text" name="actividad" class="form-control form-control-sm border-0 bg-transparent fw-bold text-center" value="{{ form.get('actividad', 'REPARACION ASCENSOR') }}">
+                      </td>
+                      <th class="bg-light fw-bold text-start ps-3 align-middle">Participantes Auditados:</th>
+                      <td>
+                          <input type="text" name="participantes_auditados" class="form-control form-control-sm border-0 bg-transparent" placeholder="Lista de participantes..." value="{{ form.get('participantes_auditados', '') }}" required>
+                      </td>
+                  </tr>
+
+                  <!-- Fila 3: Dirección y Visita realizada por -->
+                  <tr>
+                      <th class="bg-light fw-bold text-start ps-3 align-middle">Dirección:</th>
+                      <td>
+                          <input type="text" name="direccion" class="form-control form-control-sm border-0 bg-transparent" placeholder="Dirección de la obra..." value="{{ form.get('direccion', '') }}" required>
+                      </td>
+                      <th class="bg-light fw-bold text-start ps-3 align-middle">Visita realizada por:</th>
+                      <td>
+                          <input type="text" name="visita_realizada_por" class="form-control form-control-sm border-0 bg-transparent" placeholder="Nombre del auditor..." value="{{ form.get('visita_realizada_por', '') }}" required>
+                      </td>
+                  </tr>
+
+                  <!-- Fila 4: Proyecto y Número de equipo -->
+                  <tr>
+                      <th class="bg-light fw-bold text-start ps-3 align-middle">Proyecto:</th>
+                      <td>
+                          <input type="text" name="proyecto" class="form-control form-control-sm border-0 bg-transparent" placeholder="Nombre/Código de proyecto..." value="{{ form.get('proyecto', '') }}" required>
+                      </td>
+                      <th class="bg-light fw-bold text-start ps-3 align-middle">Número de equipo:</th>
+                      <td>
+                          <input type="text" name="numero_equipo" class="form-control form-control-sm border-0 bg-transparent" placeholder="N° de equipo..." value="{{ form.get('numero_equipo', '') }}" required>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- FIN DE LA CABECERA                                             -->
+  <!-- ============================================================== -->
+
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle bg-white mb-0">
+      <caption class="caption-top text-center fw-bold text-uppercase text-navy small">CUESTIONARIO - COLOCAR UN CIRCULO EN LA RESPUESTA CORRECTA.</caption>
+      <thead class="table-primary text-uppercase small">
+        <tr>
+          <th>Control a verificar</th>
+          <th class="text-center">Respuesta</th>
+          <th>Observaciones · Acción correctiva</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set global_index = namespace(value=0) %}
+        {% for sub in seccion.subsecciones %}
+          <!-- Fila de Encabezado Azul para la Sección de Preguntas -->
+          <tr class="table-primary">
+            <td colspan="3" class="fw-bold text-uppercase text-center text-dark bg-opacity-25" style="background-color: #1d4ed8; color: white !important;">
+              {{ sub.titulo }}
+            </td>
+          </tr>
+
+          <!-- Preguntas de esta subsección -->
+          {% for q in sub.questions %}
+          {% set global_index.value = global_index.value + 1 %}
+          <tr>
+            <td style="min-width:260px">
+              <div class="d-flex align-items-center gap-3">
+                <span class="num-badge">{{ global_index.value }}</span>
+                <span class="fw-semibold">{{ q.text }}</span>
+              </div>
+            </td>
+            <td class="text-center" style="min-width:170px">
+              <fieldset>
+                <legend class="visually-hidden">Respuesta para: {{ q.text }}</legend>
+                <div class="btn-group" role="group">
+                  <input type="radio" class="btn-check" name="{{ q.id }}" id="{{ q.id }}-si" value="si" {% if form.get(q.id) == 'si' %}checked{% endif %}>
+                  <label class="btn btn-outline-success fw-bold text-uppercase" for="{{ q.id }}-si">Sí</label>
+                  
+                  <input type="radio" class="btn-check" name="{{ q.id }}" id="{{ q.id }}-no" value="no" {% if form.get(q.id) == 'no' %}checked{% endif %}>
+                  <label class="btn btn-outline-danger fw-bold text-uppercase" for="{{ q.id }}-no">No</label>
+                  
+                  <input type="radio" class="btn-check" name="{{ q.id }}" id="{{ q.id }}-na" value="na" {% if form.get(q.id) == 'na' %}checked{% endif %}>
+                  <label class="btn btn-outline-secondary fw-bold text-uppercase" for="{{ q.id }}-na">N/A</label>
+                </div>
+              </fieldset>
+            </td>
+            <td style="min-width:280px">
+              <textarea name="note-{{ q.id }}" class="form-control" rows="3" placeholder="Escribe una observación...">{{ form.get('note-' ~ q.id, '') }}</textarea>
+              <div class="img-row d-flex justify-content-between align-items-center gap-2 mt-2">
+                <input type="file" name="img-{{ q.id }}" accept="image/*" multiple class="file form-control form-control-sm">
+                <span class="img-count small text-secondary">0/4</span>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+<!-- Firmas del auditor y del auditado -->
+  <div class="row g-4 mt-1">
+    <!-- Columna Auditor -->
+    <div class="col-lg-6">
+      <div class="card p-4 h-100">
+        <h2 class="h6 fw-bold text-uppercase text-navy mb-3">Auditor</h2>
+
+        <label class="form-label fw-bold">Firma</label>
+        <canvas id="firma-canvas-auditor" class="border bg-white w-100" style="height:180px; touch-action:none; cursor:crosshair"></canvas>
+        <input type="hidden" name="auditor_firma" id="auditor_firma" value="{{ form.get('auditor_firma', '') }}">
+        <div class="mt-2 mb-3">
+          <button type="button" class="btn btn-outline-secondary btn-sm" id="borrar-firma-auditor">Borrar firma</button>
+        </div>
+
+        <label for="auditor_aclaracion" class="form-label fw-bold">Aclaración</label>
+        <input id="auditor_aclaracion" name="auditor_aclaracion" class="form-control" required
+               placeholder="Nombre y apellido del auditor" value="{{ form.get('auditor_aclaracion', '') }}">
+      </div>
+    </div>
+
+    <!-- Columna Auditado -->
+    <div class="col-lg-6">
+      <div class="card p-4 h-100">
+        <h2 class="h6 fw-bold text-uppercase text-navy mb-3">Datos y Firma del Auditado</h2>
+
+        <label for="auditado_nombre" class="form-label fw-bold">Nombre y apellido (Aclaración)</label>
+        <input id="auditado_nombre" name="auditado_nombre" class="form-control mb-3" required
+               placeholder="Nombre y apellido del auditado" value="{{ form.get('auditado_nombre', '') }}">
+
+        <label for="auditado_documento" class="form-label fw-bold">DNI o legajo</label>
+        <input id="auditado_documento" name="auditado_documento" class="form-control mb-3"
+               value="{{ form.get('auditado_documento', '') }}">
+
+        <label for="auditado_puesto" class="form-label fw-bold">Puesto o sector</label>
+        <input id="auditado_puesto" name="auditado_puesto" class="form-control mb-3"
+               value="{{ form.get('auditado_puesto', '') }}">
+
+        <label class="form-label fw-bold">Firma</label>
+        <canvas id="firma-canvas-auditado" class="border bg-white w-100" style="height:140px; touch-action:none; cursor:crosshair"></canvas>
+        <input type="hidden" name="auditado_firma" id="auditado_firma" value="{{ form.get('auditado_firma', '') }}">
+        <div class="mt-2">
+          <button type="button" class="btn btn-outline-secondary btn-sm" id="borrar-firma-auditado">Borrar firma</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+    <p id="resp-count" class="small text-secondary mb-0">0 de <span id="total-preguntas"></span> preguntas respondidas</p>
+    <button type="submit" class="btn btn-primary fw-bold px-4" id="guardar" disabled>✔ Guardar formulario</button>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById("auditoria");
+  const total = +form.dataset.total;
+  document.getElementById("total-preguntas").textContent = total;
+
+  function actualizar() {
+    const nombres = new Set([...form.querySelectorAll("input[type=radio]:checked")].map(r => r.name));
+    const hechas = nombres.size;
+    const pct = Math.round(hechas / total * 100);
+    document.getElementById("pct").textContent = pct + "%";
+    document.getElementById("bar-fill").style.width = pct + "%";
+    document.getElementById("resp-count").textContent = hechas + " de " + total + " preguntas respondidas";
+    document.getElementById("guardar").disabled = hechas !== total;
+  }
+
+  form.addEventListener("change", e => {
+    if (e.target.classList.contains("file")) {
+      if (e.target.files.length > 4) {
+        alert("Máximo 4 imágenes por pregunta.");
+        e.target.value = "";
+      }
+      e.target.closest(".img-row").querySelector(".img-count").textContent = e.target.files.length + "/4";
+    }
+    actualizar();
+  });
+  actualizar();
+
+  // ---------- Función genérica para manejar lienzos de firma ----------
+  function inicializarCanvasFirma(canvasId, inputId, botonBorrarId) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext("2d");
+    const campoFirma = document.getElementById(inputId);
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    let dibujando = false;
+    let hayFirma = false;
+
+    canvas.width = canvas.clientWidth * ratio;
+    canvas.height = canvas.clientHeight * ratio;
+    ctx.scale(ratio, ratio);
+    ctx.lineWidth = 2.2;
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = "#111";
+
+    function punto(e) {
+      const r = canvas.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    }
+
+    function guardarFirma() {
+      campoFirma.value = hayFirma ? canvas.toDataURL("image/png") : "";
+    }
+
+    canvas.addEventListener("pointerdown", e => {
+      dibujando = true;
+      canvas.setPointerCapture(e.pointerId);
+      const p = punto(e);
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(p.x + 0.1, p.y + 0.1);
+      ctx.stroke();
+      hayFirma = true;
+    });
+
+    canvas.addEventListener("pointermove", e => {
+      if (!dibujando) return;
+      const p = punto(e);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+    });
+
+    ["pointerup", "pointercancel"].forEach(ev =>
+      canvas.addEventListener(ev, () => {
+        dibujando = false;
+        guardarFirma();
+      })
+    );
+
+    document.getElementById(botonBorrarId).onclick = () => {
+      ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+      hayFirma = false;
+      guardarFirma();
+    };
+
+    if (campoFirma.value) {
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, canvas.clientWidth, canvas.clientHeight);
+        hayFirma = true;
+      };
+      img.src = campoFirma.value;
+    }
+
+    return {
+      verificar: () => hayFirma,
+      guardar: guardarFirma,
+      elemento: canvas
+    };
+  }
+
+  const firmaAuditor = inicializarCanvasFirma("firma-canvas-auditor", "auditor_firma", "borrar-firma-auditor");
+  const firmaAuditado = inicializarCanvasFirma("firma-canvas-auditado", "auditado_firma", "borrar-firma-auditado");
+
+  form.addEventListener("submit", e => {
+    firmaAuditor.guardar();
+    firmaAuditado.guardar();
+
+    if (!firmaAuditor.verificar()) {
+      e.preventDefault();
+      alert("Falta la firma del auditor.");
+      firmaAuditor.elemento.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    if (!firmaAuditado.verificar()) {
+      e.preventDefault();
+      alert("Falta la firma del auditado.");
+      firmaAuditado.elemento.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+  });
+</script>
+{% endblock %}

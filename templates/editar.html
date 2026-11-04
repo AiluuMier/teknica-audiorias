@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block title %}Editar · {{ seccion.title }}{% endblock %}
+{% block back %}<a class="btn btn-light fw-bold" href="{{ url_for('inicio') }}">← Volver al inicio</a>{% endblock %}
+
+{% block content %}
+<p class="small fw-bold text-uppercase text-primary mb-2">Editar formulario</p>
+<h1 class="display-6 fw-bolder text-navy mb-4">{{ seccion.title }}</h1>
+
+<form method="post" id="editor" data-inicial='{{ subsecciones|tojson }}'>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <input type="hidden" name="subsecciones_json" id="subsecciones_json">
+
+  <div class="card p-4 mb-3">
+    <label for="t" class="form-label fw-bold">Nombre del formulario</label>
+    <input id="t" name="title" class="form-control mb-3" required value="{{ seccion.title }}">
+    <label for="d" class="form-label fw-bold">Descripción</label>
+    <textarea id="d" name="description" class="form-control" rows="2">{{ seccion.description }}</textarea>
+  </div>
+
+  <!-- Acá se dibujan las secciones, cada una con sus preguntas -->
+  <div id="subsecciones" class="d-grid gap-3 mb-3"></div>
+
+  <div class="mb-4">
+    <button type="button" class="btn btn-outline-primary fw-bold" id="add-sub">+ Agregar sección</button>
+  </div>
+
+  <div class="d-flex justify-content-end gap-2 mt-4">
+    <a class="btn btn-outline-secondary" href="{{ url_for('inicio') }}">Cancelar</a>
+    <button type="submit" class="btn btn-primary fw-bold px-4">Guardar cambios</button>
+  </div>
+</form>
+
+<script>
+  const inicial = JSON.parse(document.getElementById("editor").dataset.inicial);
+  const cont = document.getElementById("subsecciones");
+
+  function filaPregunta(q) {
+    const fila = document.createElement("div");
+    fila.className = "fila-q input-group";
+    fila.dataset.id = q.id || "";
+
+    const num = document.createElement("span");
+    num.className = "input-group-text num";
+
+    const inp = document.createElement("input");
+    inp.className = "form-control";
+    inp.placeholder = "Ej. ¿Los arneses están en buen estado?";
+    inp.value = q.text || "";
+
+    const del = document.createElement("button");
+    del.type = "button";
+    del.className = "btn btn-outline-danger btn-quitar-q";
+    del.textContent = "✕";
+    del.setAttribute("aria-label", "Quitar pregunta");
+
+    fila.append(num, inp, del);
+    return fila;
+  }
+
+  function bloqueSub(sub) {
+    const bloque = document.createElement("div");
+    bloque.className = "card p-4 sub";
+    bloque.dataset.id = sub.id || "";
+    bloque.innerHTML =
+      '<div class="d-flex gap-2 mb-3">' +
+        '<input class="form-control fw-bold sub-titulo" placeholder="Nombre de la sección (ej. Procedimientos de emergencia)">' +
+        '<button type="button" class="btn btn-outline-danger btn-quitar-sub text-nowrap">Quitar sección</button>' +
+      '</div>' +
+      '<div class="d-grid gap-2 mb-3 lista-q"></div>' +
+      '<div><button type="button" class="btn btn-outline-primary btn-sm btn-add-q">+ Agregar pregunta</button></div>';
+
+    bloque.querySelector(".sub-titulo").value = sub.titulo || "";
+    const lista = bloque.querySelector(".lista-q");
+    const preguntas = (sub.questions && sub.questions.length) ? sub.questions : [{}];
+    preguntas.forEach(q => lista.appendChild(filaPregunta(q)));
+    return bloque;
+  }
+
+  // La numeración sigue corrida en todo el formulario, igual que al completarlo
+  function renumerar() {
+    let n = 0;
+    cont.querySelectorAll(".fila-q .num").forEach(s => s.textContent = ++n);
+  }
+
+  cont.addEventListener("click", e => {
+    const quitarQ = e.target.closest(".btn-quitar-q");
+    if (quitarQ) {
+      quitarQ.closest(".fila-q").remove();
+      renumerar();
+      return;
+    }
+    const addQ = e.target.closest(".btn-add-q");
+    if (addQ) {
+      const fila = filaPregunta({});
+      addQ.closest(".sub").querySelector(".lista-q").appendChild(fila);
+      renumerar();
+      fila.querySelector("input").focus();
+      return;
+    }
+    const quitarSub = e.target.closest(".btn-quitar-sub");
+    if (quitarSub && confirm("¿Quitar esta sección con todas sus preguntas?")) {
+      quitarSub.closest(".sub").remove();
+      renumerar();
+    }
+  });
+
+  document.getElementById("add-sub").onclick = () => {
+    const b = bloqueSub({});
+    cont.appendChild(b);
+    renumerar();
+    b.querySelector(".sub-titulo").focus();
+  };
+
+  // Al guardar, se arma todo en un solo campo para mandarlo al servidor
+  document.getElementById("editor").addEventListener("submit", () => {
+    const datos = [...cont.querySelectorAll(".sub")].map(b => ({
+      id: b.dataset.id,
+      titulo: b.querySelector(".sub-titulo").value,
+      questions: [...b.querySelectorAll(".fila-q")].map(f => ({
+        id: f.dataset.id,
+        text: f.querySelector("input").value
+      }))
+    }));
+    document.getElementById("subsecciones_json").value = JSON.stringify(datos);
+  });
+
+  (inicial.length ? inicial : [{}]).forEach(s => cont.appendChild(bloqueSub(s)));
+  renumerar();
+</script>
+{% endblock %}

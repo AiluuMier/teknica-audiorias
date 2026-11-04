@@ -1,0 +1,2624 @@
+[
+  {
+    "id": "ast",
+    "title": "MANTENIMIENTO DE ASCENSOR A TRACCIÓN",
+    "code": "MANA",
+    "description": "VISITA DE SEGURIDAD E HIGIENE",
+    "questions": [
+      {
+        "id": "ast-0-0-a7c7",
+        "text": "¿Se realizo el AST?"
+      },
+      {
+        "id": "ast-1-0-06f9",
+        "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+      },
+      {
+        "id": "ast-1-1-6450",
+        "text": "¿Los E.P.P. están en buen estado?"
+      },
+      {
+        "id": "ast-2-0-fc73",
+        "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+      },
+      {
+        "id": "ast-2-1-de77",
+        "text": "¿El empleado conoce la vía de evacuación?"
+      },
+      {
+        "id": "ast-2-2-521e",
+        "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+      },
+      {
+        "id": "ast-3-0-1f5a",
+        "text": "¿Hay extintor en la sala de maquinas, con fecha de vencimiento vigente y cargado?"
+      },
+      {
+        "id": "ast-4-0-bc08",
+        "text": "¿Los aceites lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+      },
+      {
+        "id": "ast-5-0-a441",
+        "text": "¿Existe cableado eléctrico expuesto?"
+      },
+      {
+        "id": "ast-5-1-0d10",
+        "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+      },
+      {
+        "id": "ast-5-2-9898",
+        "text": "¿Existe disyuntor diferencial?"
+      },
+      {
+        "id": "ast-5-3-accd",
+        "text": "¿Existen llaves térmicas en el tablero principal?"
+      },
+      {
+        "id": "ast-5-4-3dcc",
+        "text": "¿Existe puesta a tierra?"
+      },
+      {
+        "id": "ast-6-0-3223",
+        "text": "¿El empleado posee kit de LOTO completo?"
+      },
+      {
+        "id": "ast-7-0-f760",
+        "text": "¿El empleado tiene los dos puentes autorizados y están en buenas condiciones?"
+      },
+      {
+        "id": "ast-8-0-a5f3",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a techo de cabina?"
+      },
+      {
+        "id": "ast-8-1-0912",
+        "text": "¿Existe mando de revisión en buen estado con botón de stop, inspección, subir, común, bajar?"
+      },
+      {
+        "id": "ast-8-2-2151",
+        "text": "¿Funciona correctamente el botón de STOP?"
+      },
+      {
+        "id": "ast-8-3-68f1",
+        "text": "¿Funciona correctamente el comando de inspección?"
+      },
+      {
+        "id": "ast-8-4-9069",
+        "text": "¿Funciona correctamente el comando de subir-común-bajar?"
+      },
+      {
+        "id": "ast-8-5-d999",
+        "text": "¿La seguridad de puertas funciona correctamente?"
+      },
+      {
+        "id": "ast-8-6-e8a8",
+        "text": "¿Existen barandas y están en buenas condiciones?"
+      },
+      {
+        "id": "ast-8-7-1dd9",
+        "text": "¿Existe cáncamo de seguridad?"
+      },
+      {
+        "id": "ast-8-8-aca7",
+        "text": "¿Hay una correcta iluminación para desempeñar las tareas?"
+      },
+      {
+        "id": "ast-9-0-6ab3",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a foso?"
+      },
+      {
+        "id": "ast-9-1-336c",
+        "text": "¿Hay escalera de acceso a foso en buen estado y correctamente instalada?"
+      },
+      {
+        "id": "ast-9-2-ac4b",
+        "text": "¿Existe botón de STOP? ¿Funciona correctamente?"
+      },
+      {
+        "id": "ast-9-3-a808",
+        "text": "¿El botón STOP funciona correctamente?"
+      },
+      {
+        "id": "ast-9-4-7400",
+        "text": "¿La seguridad de puertas funciona correctamente?"
+      },
+      {
+        "id": "ast-9-5-60a7",
+        "text": "¿El foso se encuentra sin agua o aceite?"
+      },
+      {
+        "id": "ast-9-6-3e6c",
+        "text": "¿Hay una correcta iluminación para desempeñar las tareas?"
+      },
+      {
+        "id": "ast-10-0-83c9",
+        "text": "¿El acceso a sala de maquinas es seguro?"
+      },
+      {
+        "id": "ast-10-1-b5ad",
+        "text": "¿Se encuentran elementos ajenos a la actividad?"
+      },
+      {
+        "id": "ast-10-2-ff13",
+        "text": "¿Las partes móviles (poleas, regulador) se encuentran protegidas?"
+      },
+      {
+        "id": "ast-11-0-2800",
+        "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+      },
+      {
+        "id": "ast-12-0-657a",
+        "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+      },
+      {
+        "id": "ast-12-1-ec84",
+        "text": "¿El empleado posee linterna?"
+      },
+      {
+        "id": "ast-12-2-c76d",
+        "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+      },
+      {
+        "id": "ast-13-0-1de5",
+        "text": "¿Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+      }
+    ],
+    "subsecciones": [
+      {
+        "id": "ast-sub-0",
+        "titulo": "ANALISIS SEGURO DE TRABAJO (AST)",
+        "questions": [
+          {
+            "id": "ast-0-0-a7c7",
+            "text": "¿Se realizo el AST?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-1",
+        "titulo": "ELEMENTOS DE PROTECCION PERSONAL  (EPP)",
+        "questions": [
+          {
+            "id": "ast-1-0-06f9",
+            "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+          },
+          {
+            "id": "ast-1-1-6450",
+            "text": "¿Los E.P.P. están en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-2",
+        "titulo": "PROCEDIMIENTOS DE EMERGENCIAS",
+        "questions": [
+          {
+            "id": "ast-2-0-fc73",
+            "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+          },
+          {
+            "id": "ast-2-1-de77",
+            "text": "¿El empleado conoce la vía de evacuación?"
+          },
+          {
+            "id": "ast-2-2-521e",
+            "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-3",
+        "titulo": "RIESGO DE INCENDIO",
+        "questions": [
+          {
+            "id": "ast-3-0-1f5a",
+            "text": "¿Hay extintor en la sala de maquinas, con fecha de vencimiento vigente y cargado?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-4",
+        "titulo": "MEDIO AMBIENTE",
+        "questions": [
+          {
+            "id": "ast-4-0-bc08",
+            "text": "¿Los aceites lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-5",
+        "titulo": "RIESGO ELECTRICO TABLERO PRINCIPAL",
+        "questions": [
+          {
+            "id": "ast-5-0-a441",
+            "text": "¿Existe cableado eléctrico expuesto?"
+          },
+          {
+            "id": "ast-5-1-0d10",
+            "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+          },
+          {
+            "id": "ast-5-2-9898",
+            "text": "¿Existe disyuntor diferencial?"
+          },
+          {
+            "id": "ast-5-3-accd",
+            "text": "¿Existen llaves térmicas en el tablero principal?"
+          },
+          {
+            "id": "ast-5-4-3dcc",
+            "text": "¿Existe puesta a tierra?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-6",
+        "titulo": "APAGADO, BLOQUEO Y ETIQUETADO (LOTO)",
+        "questions": [
+          {
+            "id": "ast-6-0-3223",
+            "text": "¿El empleado posee kit de LOTO completo?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-7",
+        "titulo": "PUENTES AUTORIZADOS",
+        "questions": [
+          {
+            "id": "ast-7-0-f760",
+            "text": "¿El empleado tiene los dos puentes autorizados y están en buenas condiciones?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-8",
+        "titulo": "ACCESO SEGURO A TECHO DE CABINA",
+        "questions": [
+          {
+            "id": "ast-8-0-a5f3",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a techo de cabina?"
+          },
+          {
+            "id": "ast-8-1-0912",
+            "text": "¿Existe mando de revisión en buen estado con botón de stop, inspección, subir, común, bajar?"
+          },
+          {
+            "id": "ast-8-2-2151",
+            "text": "¿Funciona correctamente el botón de STOP?"
+          },
+          {
+            "id": "ast-8-3-68f1",
+            "text": "¿Funciona correctamente el comando de inspección?"
+          },
+          {
+            "id": "ast-8-4-9069",
+            "text": "¿Funciona correctamente el comando de subir-común-bajar?"
+          },
+          {
+            "id": "ast-8-5-d999",
+            "text": "¿La seguridad de puertas funciona correctamente?"
+          },
+          {
+            "id": "ast-8-6-e8a8",
+            "text": "¿Existen barandas y están en buenas condiciones?"
+          },
+          {
+            "id": "ast-8-7-1dd9",
+            "text": "¿Existe cáncamo de seguridad?"
+          },
+          {
+            "id": "ast-8-8-aca7",
+            "text": "¿Hay una correcta iluminación para desempeñar las tareas?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-9",
+        "titulo": "ACCESO SEGURO A FOSO",
+        "questions": [
+          {
+            "id": "ast-9-0-6ab3",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a foso?"
+          },
+          {
+            "id": "ast-9-1-336c",
+            "text": "¿Hay escalera de acceso a foso en buen estado y correctamente instalada?"
+          },
+          {
+            "id": "ast-9-2-ac4b",
+            "text": "¿Existe botón de STOP? ¿Funciona correctamente?"
+          },
+          {
+            "id": "ast-9-3-a808",
+            "text": "¿El botón STOP funciona correctamente?"
+          },
+          {
+            "id": "ast-9-4-7400",
+            "text": "¿La seguridad de puertas funciona correctamente?"
+          },
+          {
+            "id": "ast-9-5-60a7",
+            "text": "¿El foso se encuentra sin agua o aceite?"
+          },
+          {
+            "id": "ast-9-6-3e6c",
+            "text": "¿Hay una correcta iluminación para desempeñar las tareas?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-10",
+        "titulo": "SALA DE MAQUINAS",
+        "questions": [
+          {
+            "id": "ast-10-0-83c9",
+            "text": "¿El acceso a sala de maquinas es seguro?"
+          },
+          {
+            "id": "ast-10-1-b5ad",
+            "text": "¿Se encuentran elementos ajenos a la actividad?"
+          },
+          {
+            "id": "ast-10-2-ff13",
+            "text": "¿Las partes móviles (poleas, regulador) se encuentran protegidas?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-11",
+        "titulo": "BARANDAS",
+        "questions": [
+          {
+            "id": "ast-11-0-2800",
+            "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-12",
+        "titulo": "EQUIPAMENTO",
+        "questions": [
+          {
+            "id": "ast-12-0-657a",
+            "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+          },
+          {
+            "id": "ast-12-1-ec84",
+            "text": "¿El empleado posee linterna?"
+          },
+          {
+            "id": "ast-12-2-c76d",
+            "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+          }
+        ]
+      },
+      {
+        "id": "ast-sub-13",
+        "titulo": "OTROS RIESGOS",
+        "questions": [
+          {
+            "id": "ast-13-0-1de5",
+            "text": "¿Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "epp",
+    "title": "MANTENIMIENTO DE ASCENSOR HIDRAULICO",
+    "code": "MD",
+    "description": "VISITA DE SEGURIDAD E HIGIENE",
+    "questions": [
+      {
+        "id": "epp-0-0-3ebb",
+        "text": "¿Se realizo el AST?"
+      },
+      {
+        "id": "epp-1-0-a065",
+        "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+      },
+      {
+        "id": "epp-1-1-f1ec",
+        "text": "¿Los E.P.P. están en buen estado?"
+      },
+      {
+        "id": "epp-2-0-1527",
+        "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+      },
+      {
+        "id": "epp-2-1-4e2f",
+        "text": "¿El empleado conoce la vía de evacuación?"
+      },
+      {
+        "id": "epp-2-2-9333",
+        "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+      },
+      {
+        "id": "epp-4-0-1153",
+        "text": "¿Hay extintor en la sala de maquinas, con fecha de vencimiento vigente y cargado?"
+      },
+      {
+        "id": "epp-5-0-927f",
+        "text": "¿Los lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+      },
+      {
+        "id": "epp-6-0-78cc",
+        "text": "¿Existe cableado eléctrico expuesto?"
+      },
+      {
+        "id": "epp-6-1-8c60",
+        "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+      },
+      {
+        "id": "epp-6-2-12b3",
+        "text": "¿Existen llaves térmicas en el tablero principal?"
+      },
+      {
+        "id": "epp-6-3-4969",
+        "text": "¿Existe disyuntor diferencial?"
+      },
+      {
+        "id": "epp-6-4-0533",
+        "text": "¿Existe puesta a tierra?"
+      },
+      {
+        "id": "epp-7-0-7c7e",
+        "text": "¿El empleado posee kit de LOTO completo?"
+      },
+      {
+        "id": "epp-8-0-b93a",
+        "text": "¿El empleado tiene los dos puentes autorizados?"
+      },
+      {
+        "id": "epp-9-0-cfae",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a techo de cabina?"
+      },
+      {
+        "id": "epp-9-1-8d1b",
+        "text": "¿Existe mando de revisión en buen estado con botón de stop, inspección, subir, común, bajar?"
+      },
+      {
+        "id": "epp-9-2-c12d",
+        "text": "¿Funciona correctamente el botón de STOP?"
+      },
+      {
+        "id": "epp-9-3-e3d8",
+        "text": "¿Funciona correctamente el comando de inspección?"
+      },
+      {
+        "id": "epp-9-4-e73a",
+        "text": "¿Funciona correctamente el comando de subir-común-bajar?"
+      },
+      {
+        "id": "epp-9-5-8eaa",
+        "text": "¿La seguridad de puertas funciona correctamente?"
+      },
+      {
+        "id": "epp-9-6-11a8",
+        "text": "¿Existen barandas y están en buenas condiciones?"
+      },
+      {
+        "id": "epp-9-7-32cd",
+        "text": "¿Existe cáncamo de seguridad?"
+      },
+      {
+        "id": "epp-9-8-59de",
+        "text": "¿Hay una correcta iluminación para desempeñar las tareas?"
+      },
+      {
+        "id": "epp-10-0-cde7",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a foso?"
+      },
+      {
+        "id": "epp-10-1-1895",
+        "text": "¿Hay escalera de acceso a foso en buen estado y correctamente instalada?"
+      },
+      {
+        "id": "epp-10-2-b9b9",
+        "text": "¿Existe botón de STOP? ¿Funciona correctamente?"
+      },
+      {
+        "id": "epp-10-3-7df9",
+        "text": "¿La seguridad de puertas funciona correctamente?"
+      },
+      {
+        "id": "epp-10-4-b8dd",
+        "text": "¿El foso se encuentra sin agua o aceite?"
+      },
+      {
+        "id": "epp-10-5-5954",
+        "text": "¿El empleado demuestra conocimiento de que puede permanecer 10 minutos como máximo en tareas de MANT.?"
+      },
+      {
+        "id": "epp-11-0-cfcd",
+        "text": "¿El acceso a sala de maquinas es seguro?"
+      },
+      {
+        "id": "epp-11-1-3a9c",
+        "text": "¿Todas las válvulas se encuentran en buen estado?"
+      },
+      {
+        "id": "epp-11-2-bf23",
+        "text": "¿Se encuentran elementos ajenos a la actividad?"
+      },
+      {
+        "id": "epp-12-0-5c29",
+        "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+      },
+      {
+        "id": "epp-13-0-8ce1",
+        "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+      },
+      {
+        "id": "epp-13-1-6ca4",
+        "text": "¿El empleado posee linterna?"
+      },
+      {
+        "id": "epp-13-2-7aa0",
+        "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+      }
+    ],
+    "subsecciones": [
+      {
+        "id": "epp-sub-0",
+        "titulo": "ANALISIS SEGURO DE TRABAJO (AST)",
+        "questions": [
+          {
+            "id": "epp-0-0-3ebb",
+            "text": "¿Se realizo el AST?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-1",
+        "titulo": "ELEMENTOS DE PROTECCION PERSONAL  (EPP)",
+        "questions": [
+          {
+            "id": "epp-1-0-a065",
+            "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+          },
+          {
+            "id": "epp-1-1-f1ec",
+            "text": "¿Los E.P.P. están en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-2",
+        "titulo": "PROCEDIMIENTOS DE EMERGENCIAS",
+        "questions": [
+          {
+            "id": "epp-2-0-1527",
+            "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+          },
+          {
+            "id": "epp-2-1-4e2f",
+            "text": "¿El empleado conoce la vía de evacuación?"
+          },
+          {
+            "id": "epp-2-2-9333",
+            "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-4",
+        "titulo": "RIESGO DE INCENDIO",
+        "questions": [
+          {
+            "id": "epp-4-0-1153",
+            "text": "¿Hay extintor en la sala de maquinas, con fecha de vencimiento vigente y cargado?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-5",
+        "titulo": "MEDIO AMBIENTE",
+        "questions": [
+          {
+            "id": "epp-5-0-927f",
+            "text": "¿Los lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-6",
+        "titulo": "RIESGO ELECTRICO",
+        "questions": [
+          {
+            "id": "epp-6-0-78cc",
+            "text": "¿Existe cableado eléctrico expuesto?"
+          },
+          {
+            "id": "epp-6-1-8c60",
+            "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+          },
+          {
+            "id": "epp-6-2-12b3",
+            "text": "¿Existen llaves térmicas en el tablero principal?"
+          },
+          {
+            "id": "epp-6-3-4969",
+            "text": "¿Existe disyuntor diferencial?"
+          },
+          {
+            "id": "epp-6-4-0533",
+            "text": "¿Existe puesta a tierra?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-7",
+        "titulo": "APAGADO, BLOQUEO Y ETIQUETADO (LOTO)",
+        "questions": [
+          {
+            "id": "epp-7-0-7c7e",
+            "text": "¿El empleado posee kit de LOTO completo?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-8",
+        "titulo": "PUENTES AUTORIZADOS",
+        "questions": [
+          {
+            "id": "epp-8-0-b93a",
+            "text": "¿El empleado tiene los dos puentes autorizados?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-9",
+        "titulo": "ACCESO SEGURO A TECHO DE CABINA",
+        "questions": [
+          {
+            "id": "epp-9-0-cfae",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a techo de cabina?"
+          },
+          {
+            "id": "epp-9-1-8d1b",
+            "text": "¿Existe mando de revisión en buen estado con botón de stop, inspección, subir, común, bajar?"
+          },
+          {
+            "id": "epp-9-2-c12d",
+            "text": "¿Funciona correctamente el botón de STOP?"
+          },
+          {
+            "id": "epp-9-3-e3d8",
+            "text": "¿Funciona correctamente el comando de inspección?"
+          },
+          {
+            "id": "epp-9-4-e73a",
+            "text": "¿Funciona correctamente el comando de subir-común-bajar?"
+          },
+          {
+            "id": "epp-9-5-8eaa",
+            "text": "¿La seguridad de puertas funciona correctamente?"
+          },
+          {
+            "id": "epp-9-6-11a8",
+            "text": "¿Existen barandas y están en buenas condiciones?"
+          },
+          {
+            "id": "epp-9-7-32cd",
+            "text": "¿Existe cáncamo de seguridad?"
+          },
+          {
+            "id": "epp-9-8-59de",
+            "text": "¿Hay una correcta iluminación para desempeñar las tareas?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-10",
+        "titulo": "ACCESO SEGURO A FOSO",
+        "questions": [
+          {
+            "id": "epp-10-0-cde7",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a foso?"
+          },
+          {
+            "id": "epp-10-1-1895",
+            "text": "¿Hay escalera de acceso a foso en buen estado y correctamente instalada?"
+          },
+          {
+            "id": "epp-10-2-b9b9",
+            "text": "¿Existe botón de STOP? ¿Funciona correctamente?"
+          },
+          {
+            "id": "epp-10-3-7df9",
+            "text": "¿La seguridad de puertas funciona correctamente?"
+          },
+          {
+            "id": "epp-10-4-b8dd",
+            "text": "¿El foso se encuentra sin agua o aceite?"
+          },
+          {
+            "id": "epp-10-5-5954",
+            "text": "¿El empleado demuestra conocimiento de que puede permanecer 10 minutos como máximo en tareas de MANT.?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-11",
+        "titulo": "SALA DE MAQUINAS",
+        "questions": [
+          {
+            "id": "epp-11-0-cfcd",
+            "text": "¿El acceso a sala de maquinas es seguro?"
+          },
+          {
+            "id": "epp-11-1-3a9c",
+            "text": "¿Todas las válvulas se encuentran en buen estado?"
+          },
+          {
+            "id": "epp-11-2-bf23",
+            "text": "¿Se encuentran elementos ajenos a la actividad?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-12",
+        "titulo": "BARANDAS",
+        "questions": [
+          {
+            "id": "epp-12-0-5c29",
+            "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+          }
+        ]
+      },
+      {
+        "id": "epp-sub-13",
+        "titulo": "EQUIPAMENTO",
+        "questions": [
+          {
+            "id": "epp-13-0-8ce1",
+            "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+          },
+          {
+            "id": "epp-13-1-6ca4",
+            "text": "¿El empleado posee linterna?"
+          },
+          {
+            "id": "epp-13-2-7aa0",
+            "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "emergencias",
+    "title": "MANTENIMIENTO DE ESCALERAS MECÁNICAS",
+    "code": "PE",
+    "description": "VISITA DE SEGURIDAD E HIGIENE",
+    "questions": [
+      {
+        "id": "emergencias-0-0-9a6d",
+        "text": "¿Se realizó el AST?"
+      },
+      {
+        "id": "emergencias-1-0-7567",
+        "text": "¿Se están utilizando lo E.P.P. adecuados a la tarea?"
+      },
+      {
+        "id": "emergencias-1-1-0a27",
+        "text": "¿Los E.P.P. están en buen estado?"
+      },
+      {
+        "id": "emergencias-2-0-a302",
+        "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+      },
+      {
+        "id": "emergencias-2-1-edbc",
+        "text": "¿El empleado conoce la vía de evacuación?"
+      },
+      {
+        "id": "emergencias-2-2-ce08",
+        "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+      },
+      {
+        "id": "emergencias-3-0-e7bf",
+        "text": "¿Hay extintor con fecha de vencimiento vigente y cargado en la zona de trabajo?"
+      },
+      {
+        "id": "emergencias-4-0-3e5e",
+        "text": "¿Los lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+      },
+      {
+        "id": "emergencias-5-0-0590",
+        "text": "¿Existe cableado eléctrico expuesto?"
+      },
+      {
+        "id": "emergencias-5-1-1d51",
+        "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+      },
+      {
+        "id": "emergencias-5-2-4d4c",
+        "text": "¿Existen llaves térmicas en el tablero principal?"
+      },
+      {
+        "id": "emergencias-5-3-6956",
+        "text": "¿Existe disyuntor diferencial?"
+      },
+      {
+        "id": "emergencias-5-4-b700",
+        "text": "¿Existe puesta a tierra?"
+      },
+      {
+        "id": "emergencias-6-0-883b",
+        "text": "¿El empleado posee kit de LOTO completo?"
+      },
+      {
+        "id": "emergencias-7-0-e2d0",
+        "text": "¿El empleado tiene los dos puentes autorizados?"
+      },
+      {
+        "id": "emergencias-8-0-4442",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a fosa?"
+      },
+      {
+        "id": "emergencias-8-1-1e54",
+        "text": "¿Existe manguera de revisión y se encuentra en buen estado?"
+      },
+      {
+        "id": "emergencias-8-2-74cf",
+        "text": "¿Funcionan correctamente los botones de la manguera de revisión?"
+      },
+      {
+        "id": "emergencias-8-3-6784",
+        "text": "¿Funcionan correctamente los botones de STOP de usuario?"
+      },
+      {
+        "id": "emergencias-8-4-f7aa",
+        "text": "¿Funciona correctamente el botón de STOP de fosa?"
+      },
+      {
+        "id": "emergencias-8-5-bb2a",
+        "text": "¿Funcionan correctamente las seguridades de entrada de pasamanos?"
+      },
+      {
+        "id": "emergencias-8-6-5290",
+        "text": "¿Funcionan correctamente las seguridades de tapa de fosa?"
+      },
+      {
+        "id": "emergencias-8-7-85f3",
+        "text": "¿Funcionan correctamente las seguridades de placa de peines?"
+      },
+      {
+        "id": "emergencias-8-8-8069",
+        "text": "¿Existe ausencia o hundimiento de peldaños?"
+      },
+      {
+        "id": "emergencias-8-9-a489",
+        "text": "¿Las fosas se encuentran sin agua y en condiciones seguras de ingreso?"
+      },
+      {
+        "id": "emergencias-9-0-5b9a",
+        "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+      },
+      {
+        "id": "emergencias-10-0-c252",
+        "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+      },
+      {
+        "id": "emergencias-10-1-5602",
+        "text": "¿El empleado posee linterna?"
+      },
+      {
+        "id": "emergencias-10-2-99d8",
+        "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+      },
+      {
+        "id": "emergencias-11-0-dd45",
+        "text": "Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+      },
+      {
+        "id": "emergencias-11-1-4da4",
+        "text": "¿La escalera tiene colocados sus respectivos pictogramas de seguridad arriba / abajo?"
+      }
+    ],
+    "subsecciones": [
+      {
+        "id": "emergencias-sub",
+        "titulo": "Analisis seguro de trabajo (AST)",
+        "questions": [
+          {
+            "id": "emergencias-0-0-9a6d",
+            "text": "¿Se realizó el AST?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-1",
+        "titulo": "Elementos de protección personal (EPP)",
+        "questions": [
+          {
+            "id": "emergencias-1-0-7567",
+            "text": "¿Se están utilizando lo E.P.P. adecuados a la tarea?"
+          },
+          {
+            "id": "emergencias-1-1-0a27",
+            "text": "¿Los E.P.P. están en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-2",
+        "titulo": "PROCEDIMIENTOS DE EMERGENCIAS",
+        "questions": [
+          {
+            "id": "emergencias-2-0-a302",
+            "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+          },
+          {
+            "id": "emergencias-2-1-edbc",
+            "text": "¿El empleado conoce la vía de evacuación?"
+          },
+          {
+            "id": "emergencias-2-2-ce08",
+            "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-3",
+        "titulo": "RIESGO DE INCENDIO",
+        "questions": [
+          {
+            "id": "emergencias-3-0-e7bf",
+            "text": "¿Hay extintor con fecha de vencimiento vigente y cargado en la zona de trabajo?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-4",
+        "titulo": "MEDIO AMBIENTE",
+        "questions": [
+          {
+            "id": "emergencias-4-0-3e5e",
+            "text": "¿Los lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-5",
+        "titulo": "RIESGO ELECTRICO",
+        "questions": [
+          {
+            "id": "emergencias-5-0-0590",
+            "text": "¿Existe cableado eléctrico expuesto?"
+          },
+          {
+            "id": "emergencias-5-1-1d51",
+            "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+          },
+          {
+            "id": "emergencias-5-2-4d4c",
+            "text": "¿Existen llaves térmicas en el tablero principal?"
+          },
+          {
+            "id": "emergencias-5-3-6956",
+            "text": "¿Existe disyuntor diferencial?"
+          },
+          {
+            "id": "emergencias-5-4-b700",
+            "text": "¿Existe puesta a tierra?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-6",
+        "titulo": "APAGADO, BLOQUEO Y ETIQUETADO (LOTO)",
+        "questions": [
+          {
+            "id": "emergencias-6-0-883b",
+            "text": "¿El empleado posee kit de LOTO completo?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-7",
+        "titulo": "PUENTES AUTORIZADOS",
+        "questions": [
+          {
+            "id": "emergencias-7-0-e2d0",
+            "text": "¿El empleado tiene los dos puentes autorizados?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-8",
+        "titulo": "ACCESO SEGURO A FOSA SUPERIOR - INFERIOR",
+        "questions": [
+          {
+            "id": "emergencias-8-0-4442",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a fosa?"
+          },
+          {
+            "id": "emergencias-8-1-1e54",
+            "text": "¿Existe manguera de revisión y se encuentra en buen estado?"
+          },
+          {
+            "id": "emergencias-8-2-74cf",
+            "text": "¿Funcionan correctamente los botones de la manguera de revisión?"
+          },
+          {
+            "id": "emergencias-8-3-6784",
+            "text": "¿Funcionan correctamente los botones de STOP de usuario?"
+          },
+          {
+            "id": "emergencias-8-4-f7aa",
+            "text": "¿Funciona correctamente el botón de STOP de fosa?"
+          },
+          {
+            "id": "emergencias-8-5-bb2a",
+            "text": "¿Funcionan correctamente las seguridades de entrada de pasamanos?"
+          },
+          {
+            "id": "emergencias-8-6-5290",
+            "text": "¿Funcionan correctamente las seguridades de tapa de fosa?"
+          },
+          {
+            "id": "emergencias-8-7-85f3",
+            "text": "¿Funcionan correctamente las seguridades de placa de peines?"
+          },
+          {
+            "id": "emergencias-8-8-8069",
+            "text": "¿Existe ausencia o hundimiento de peldaños?"
+          },
+          {
+            "id": "emergencias-8-9-a489",
+            "text": "¿Las fosas se encuentran sin agua y en condiciones seguras de ingreso?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-9",
+        "titulo": "BARANDAS",
+        "questions": [
+          {
+            "id": "emergencias-9-0-5b9a",
+            "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-10",
+        "titulo": "EQUIPAMENTO",
+        "questions": [
+          {
+            "id": "emergencias-10-0-c252",
+            "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+          },
+          {
+            "id": "emergencias-10-1-5602",
+            "text": "¿El empleado posee linterna?"
+          },
+          {
+            "id": "emergencias-10-2-99d8",
+            "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+          }
+        ]
+      },
+      {
+        "id": "emergencias-sub-11",
+        "titulo": "OTROS RIESGOS",
+        "questions": [
+          {
+            "id": "emergencias-11-0-dd45",
+            "text": "Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+          },
+          {
+            "id": "emergencias-11-1-4da4",
+            "text": "¿La escalera tiene colocados sus respectivos pictogramas de seguridad arriba / abajo?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "custom-1792178394507",
+    "title": "OBRA NUEVA ASCENSOR",
+    "description": "VISITA DE SEGURIDAD E HIGIENE",
+    "code": "OBRN",
+    "questions": [
+      {
+        "id": "custom-1792178394507-0-0-9d73",
+        "text": "¿Se realizo el AST?"
+      },
+      {
+        "id": "custom-1792178394507-1-0-a00d",
+        "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792178394507-1-1-1549",
+        "text": "¿Los E.P.P. están en buen estado?"
+      },
+      {
+        "id": "custom-1792178394507-2-0-8e15",
+        "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+      },
+      {
+        "id": "custom-1792178394507-2-1-ee4a",
+        "text": "¿El empleado conoce la vía de evacuación?"
+      },
+      {
+        "id": "custom-1792178394507-2-2-9afe",
+        "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+      },
+      {
+        "id": "custom-1792178394507-3-0-dfce",
+        "text": "¿Se encuentra el obrador en buenas condiciones?"
+      },
+      {
+        "id": "custom-1792178394507-3-1-0379",
+        "text": "¿Hay extintor?"
+      },
+      {
+        "id": "custom-1792178394507-3-2-3a63",
+        "text": "¿Hay espacio para poder cambiarse?"
+      },
+      {
+        "id": "custom-1792178394507-3-3-6eab",
+        "text": "¿Hay agua potable?"
+      },
+      {
+        "id": "custom-1792178394507-4-0-b671",
+        "text": "¿Hay extintor en la sala de maquinas, con fecha de vencimiento vigente y cargado?"
+      },
+      {
+        "id": "custom-1792178394507-5-0-87b4",
+        "text": "¿Los aceites lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+      },
+      {
+        "id": "custom-1792178394507-6-0-ab8a",
+        "text": "¿Existe cableado eléctrico expuesto?"
+      },
+      {
+        "id": "custom-1792178394507-6-1-8ca4",
+        "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+      },
+      {
+        "id": "custom-1792178394507-6-2-54b0",
+        "text": "¿Existe disyuntor diferencial y llaves térmicas?"
+      },
+      {
+        "id": "custom-1792178394507-6-3-99b6",
+        "text": "¿Existe puesta a tierra?"
+      },
+      {
+        "id": "custom-1792178394507-7-0-a50e",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a techo de cabina?"
+      },
+      {
+        "id": "custom-1792178394507-7-1-2269",
+        "text": "¿Existe mando de revisión en buen estado con botón de stop, inspección, subir, común, bajar?"
+      },
+      {
+        "id": "custom-1792178394507-7-2-a2ca",
+        "text": "¿Funciona correctamente el botón de STOP?"
+      },
+      {
+        "id": "custom-1792178394507-7-3-fa28",
+        "text": "¿Funciona correctamente el comando de inspección?"
+      },
+      {
+        "id": "custom-1792178394507-7-4-a9ca",
+        "text": "¿Funciona correctamente el comando de subir-común-bajar?"
+      },
+      {
+        "id": "custom-1792178394507-7-5-9b7a",
+        "text": "¿La seguridad de puertas funciona correctamente?"
+      },
+      {
+        "id": "custom-1792178394507-7-6-10d4",
+        "text": "¿Existen barandas y están en buenas condiciones?"
+      },
+      {
+        "id": "custom-1792178394507-7-7-9177",
+        "text": "¿Existe cáncamo?"
+      },
+      {
+        "id": "custom-1792178394507-7-8-0453",
+        "text": "¿Hay iluminación?"
+      },
+      {
+        "id": "custom-1792178394507-8-0-cd42",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a foso?"
+      },
+      {
+        "id": "custom-1792178394507-8-1-3248",
+        "text": "¿Hay escalera de acceso a foso en buen estado y correctamente instalada?"
+      },
+      {
+        "id": "custom-1792178394507-8-2-4fbf",
+        "text": "¿Existe botón de STOP? ¿Funciona correctamente?"
+      },
+      {
+        "id": "custom-1792178394507-8-3-8f3b",
+        "text": "¿La seguridad de puertas funciona correctamente?"
+      },
+      {
+        "id": "custom-1792178394507-8-4-0b7b",
+        "text": "¿El foso se encuentra sin agua o aceite?"
+      },
+      {
+        "id": "custom-1792178394507-8-5-419c",
+        "text": "¿Hay iluminación?"
+      },
+      {
+        "id": "custom-1792178394507-9-0-426a",
+        "text": "¿El acceso a sala de maquinas es seguro?"
+      },
+      {
+        "id": "custom-1792178394507-9-1-8974",
+        "text": "¿Se encuentran elementos ajenos a la actividad?"
+      },
+      {
+        "id": "custom-1792178394507-9-2-c605",
+        "text": "¿Las partes móviles (poleas, regulador) se encuentran protegidas?"
+      },
+      {
+        "id": "custom-1792178394507-9-3-2072",
+        "text": "¿Hay extintor?"
+      },
+      {
+        "id": "custom-1792178394507-9-4-a279",
+        "text": "¿La iluminación es adecuada?"
+      },
+      {
+        "id": "custom-1792178394507-9-5-d6de",
+        "text": "¿Los pases de losa están debidamente resguardados?"
+      },
+      {
+        "id": "custom-1792178394507-10-0-d1c5",
+        "text": "¿Existen las tres barandas por cada piso?"
+      },
+      {
+        "id": "custom-1792178394507-11-0-777b",
+        "text": "¿El área de trabajo se encuentra ordenada y limpia en las inmediaciones?"
+      },
+      {
+        "id": "custom-1792178394507-11-1-f6e9",
+        "text": "¿Se han retirado objetos inflamables del entorno?"
+      },
+      {
+        "id": "custom-1792178394507-11-2-be34",
+        "text": "¿Hay disponibilidad de extintor?"
+      },
+      {
+        "id": "custom-1792178394507-11-3-383f",
+        "text": "¿Los E.P.P. son los adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792178394507-12-0-ae03",
+        "text": "¿El aislamiento de las pinzas porta electrodos y los bornes de conexión se encuentran aislados y en buen estado?"
+      },
+      {
+        "id": "custom-1792178394507-12-1-bfb7",
+        "text": "Los cables, terminales, e interruptores se encuentran en buen estado?"
+      },
+      {
+        "id": "custom-1792178394507-12-2-caea",
+        "text": "¿La conexión a la energía eléctrica de la soldadora cuenta con puesta a tierra?"
+      },
+      {
+        "id": "custom-1792178394507-12-3-52f9",
+        "text": "¿Los E.P.P. son los adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792178394507-12-4-54af",
+        "text": "¿La iluminación es adecuada?"
+      },
+      {
+        "id": "custom-1792178394507-13-0-91fc",
+        "text": "¿El disco se encuentra en buenas condiciones?"
+      },
+      {
+        "id": "custom-1792178394507-13-1-77fd",
+        "text": "¿La amoladora posee resguardo de seguridad?"
+      },
+      {
+        "id": "custom-1792178394507-13-2-1938",
+        "text": ",¿El mango de la amoladora se encuentra en buen estado?"
+      },
+      {
+        "id": "custom-1792178394507-13-3-2c49",
+        "text": ",¿Hay disponible un banco de trabajo?"
+      },
+      {
+        "id": "custom-1792178394507-13-4-6d07",
+        "text": "¿La iluminación es adecuada?"
+      },
+      {
+        "id": "custom-1792178394507-14-0-f40d",
+        "text": "¿Todos los elementos para izaje de cargas se encuentran en buen estado?"
+      },
+      {
+        "id": "custom-1792178394507-14-2-4f75",
+        "text": "¿El aparejo se encuentra etiquetado y"
+      },
+      {
+        "id": "custom-1792178394507-14-3-58f2",
+        "text": "¿Se encuentra la probeta de carga en el gancho de carga?"
+      },
+      {
+        "id": "custom-1792178394507-15-0-e1ee",
+        "text": "¿La línea de vida se encuentra en buen estado?"
+      },
+      {
+        "id": "custom-1792178394507-15-1-9b0f",
+        "text": "¿La línea de vida se encuentra debidamente colocada al gancho?"
+      },
+      {
+        "id": "custom-1792178394507-15-2-9b33",
+        "text": "¿La línea de vida se encuentra en un solo tramo?"
+      },
+      {
+        "id": "custom-1792178394507-16-0-ac8b",
+        "text": "¿Se encuentra debidamente instalado el False Car?"
+      },
+      {
+        "id": "custom-1792178394507-17-0-a63a",
+        "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+      },
+      {
+        "id": "custom-1792178394507-17-1-3850",
+        "text": "¿El empleado posee linterna?"
+      },
+      {
+        "id": "custom-1792178394507-17-2-c525",
+        "text": "¿El empleado posee multímetro en buenas condiciones y calibrado?"
+      },
+      {
+        "id": "custom-1792178394507-18-0-4f96",
+        "text": "¿Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+      }
+    ],
+    "subsecciones": [
+      {
+        "id": "custom-1792178394507-sub-0",
+        "titulo": "CUESTIONARIO - COLOCAR UN CIRCULO EN LA RESPUESTA CORRECTA.",
+        "questions": [
+          {
+            "id": "custom-1792178394507-0-0-9d73",
+            "text": "¿Se realizo el AST?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-1",
+        "titulo": "ELEMENTOS DE PROTECCION PERSONAL  (EPP)",
+        "questions": [
+          {
+            "id": "custom-1792178394507-1-0-a00d",
+            "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+          },
+          {
+            "id": "custom-1792178394507-1-1-1549",
+            "text": "¿Los E.P.P. están en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-2",
+        "titulo": "PROCEDIMIENTOS DE EMERGENCIAS",
+        "questions": [
+          {
+            "id": "custom-1792178394507-2-0-8e15",
+            "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+          },
+          {
+            "id": "custom-1792178394507-2-1-ee4a",
+            "text": "¿El empleado conoce la vía de evacuación?"
+          },
+          {
+            "id": "custom-1792178394507-2-2-9afe",
+            "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-3",
+        "titulo": "OBRADOR",
+        "questions": [
+          {
+            "id": "custom-1792178394507-3-0-dfce",
+            "text": "¿Se encuentra el obrador en buenas condiciones?"
+          },
+          {
+            "id": "custom-1792178394507-3-1-0379",
+            "text": "¿Hay extintor?"
+          },
+          {
+            "id": "custom-1792178394507-3-2-3a63",
+            "text": "¿Hay espacio para poder cambiarse?"
+          },
+          {
+            "id": "custom-1792178394507-3-3-6eab",
+            "text": "¿Hay agua potable?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-4",
+        "titulo": "RIESGO DE INCENDIO",
+        "questions": [
+          {
+            "id": "custom-1792178394507-4-0-b671",
+            "text": "¿Hay extintor en la sala de maquinas, con fecha de vencimiento vigente y cargado?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-5",
+        "titulo": "MEDIO AMBIENTE",
+        "questions": [
+          {
+            "id": "custom-1792178394507-5-0-87b4",
+            "text": "¿Los aceites lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-6",
+        "titulo": "RIESGO ELECTRICO",
+        "questions": [
+          {
+            "id": "custom-1792178394507-6-0-ab8a",
+            "text": "¿Existe cableado eléctrico expuesto?"
+          },
+          {
+            "id": "custom-1792178394507-6-1-8ca4",
+            "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+          },
+          {
+            "id": "custom-1792178394507-6-2-54b0",
+            "text": "¿Existe disyuntor diferencial y llaves térmicas?"
+          },
+          {
+            "id": "custom-1792178394507-6-3-99b6",
+            "text": "¿Existe puesta a tierra?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-7",
+        "titulo": "ACCESO SEGURO A TECHO DE CABINA",
+        "questions": [
+          {
+            "id": "custom-1792178394507-7-0-a50e",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a techo de cabina?"
+          },
+          {
+            "id": "custom-1792178394507-7-1-2269",
+            "text": "¿Existe mando de revisión en buen estado con botón de stop, inspección, subir, común, bajar?"
+          },
+          {
+            "id": "custom-1792178394507-7-2-a2ca",
+            "text": "¿Funciona correctamente el botón de STOP?"
+          },
+          {
+            "id": "custom-1792178394507-7-3-fa28",
+            "text": "¿Funciona correctamente el comando de inspección?"
+          },
+          {
+            "id": "custom-1792178394507-7-4-a9ca",
+            "text": "¿Funciona correctamente el comando de subir-común-bajar?"
+          },
+          {
+            "id": "custom-1792178394507-7-5-9b7a",
+            "text": "¿La seguridad de puertas funciona correctamente?"
+          },
+          {
+            "id": "custom-1792178394507-7-6-10d4",
+            "text": "¿Existen barandas y están en buenas condiciones?"
+          },
+          {
+            "id": "custom-1792178394507-7-7-9177",
+            "text": "¿Existe cáncamo?"
+          },
+          {
+            "id": "custom-1792178394507-7-8-0453",
+            "text": "¿Hay iluminación?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-8",
+        "titulo": "ACCESO SEGURO A FOSO",
+        "questions": [
+          {
+            "id": "custom-1792178394507-8-0-cd42",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a foso?"
+          },
+          {
+            "id": "custom-1792178394507-8-1-3248",
+            "text": "¿Hay escalera de acceso a foso en buen estado y correctamente instalada?"
+          },
+          {
+            "id": "custom-1792178394507-8-2-4fbf",
+            "text": "¿Existe botón de STOP? ¿Funciona correctamente?"
+          },
+          {
+            "id": "custom-1792178394507-8-3-8f3b",
+            "text": "¿La seguridad de puertas funciona correctamente?"
+          },
+          {
+            "id": "custom-1792178394507-8-4-0b7b",
+            "text": "¿El foso se encuentra sin agua o aceite?"
+          },
+          {
+            "id": "custom-1792178394507-8-5-419c",
+            "text": "¿Hay iluminación?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-9",
+        "titulo": "SALA DE MAQUINAS",
+        "questions": [
+          {
+            "id": "custom-1792178394507-9-0-426a",
+            "text": "¿El acceso a sala de maquinas es seguro?"
+          },
+          {
+            "id": "custom-1792178394507-9-1-8974",
+            "text": "¿Se encuentran elementos ajenos a la actividad?"
+          },
+          {
+            "id": "custom-1792178394507-9-2-c605",
+            "text": "¿Las partes móviles (poleas, regulador) se encuentran protegidas?"
+          },
+          {
+            "id": "custom-1792178394507-9-3-2072",
+            "text": "¿Hay extintor?"
+          },
+          {
+            "id": "custom-1792178394507-9-4-a279",
+            "text": "¿La iluminación es adecuada?"
+          },
+          {
+            "id": "custom-1792178394507-9-5-d6de",
+            "text": "¿Los pases de losa están debidamente resguardados?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-10",
+        "titulo": "BARANDAS",
+        "questions": [
+          {
+            "id": "custom-1792178394507-10-0-d1c5",
+            "text": "¿Existen las tres barandas por cada piso?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-11",
+        "titulo": "TRABAJOS EN CALIENTE",
+        "questions": [
+          {
+            "id": "custom-1792178394507-11-0-777b",
+            "text": "¿El área de trabajo se encuentra ordenada y limpia en las inmediaciones?"
+          },
+          {
+            "id": "custom-1792178394507-11-1-f6e9",
+            "text": "¿Se han retirado objetos inflamables del entorno?"
+          },
+          {
+            "id": "custom-1792178394507-11-2-be34",
+            "text": "¿Hay disponibilidad de extintor?"
+          },
+          {
+            "id": "custom-1792178394507-11-3-383f",
+            "text": "¿Los E.P.P. son los adecuados a la tarea?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-12",
+        "titulo": "TRABAJOS EN CALIENTE - TRABAJOS DE SOLDADUR",
+        "questions": [
+          {
+            "id": "custom-1792178394507-12-0-ae03",
+            "text": "¿El aislamiento de las pinzas porta electrodos y los bornes de conexión se encuentran aislados y en buen estado?"
+          },
+          {
+            "id": "custom-1792178394507-12-1-bfb7",
+            "text": "Los cables, terminales, e interruptores se encuentran en buen estado?"
+          },
+          {
+            "id": "custom-1792178394507-12-2-caea",
+            "text": "¿La conexión a la energía eléctrica de la soldadora cuenta con puesta a tierra?"
+          },
+          {
+            "id": "custom-1792178394507-12-3-52f9",
+            "text": "¿Los E.P.P. son los adecuados a la tarea?"
+          },
+          {
+            "id": "custom-1792178394507-12-4-54af",
+            "text": "¿La iluminación es adecuada?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-13",
+        "titulo": "TRABAJOS EN CALIENTE - TRABAJOS CON AMOLADORA",
+        "questions": [
+          {
+            "id": "custom-1792178394507-13-0-91fc",
+            "text": "¿El disco se encuentra en buenas condiciones?"
+          },
+          {
+            "id": "custom-1792178394507-13-1-77fd",
+            "text": "¿La amoladora posee resguardo de seguridad?"
+          },
+          {
+            "id": "custom-1792178394507-13-2-1938",
+            "text": ",¿El mango de la amoladora se encuentra en buen estado?"
+          },
+          {
+            "id": "custom-1792178394507-13-3-2c49",
+            "text": ",¿Hay disponible un banco de trabajo?"
+          },
+          {
+            "id": "custom-1792178394507-13-4-6d07",
+            "text": "¿La iluminación es adecuada?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-14",
+        "titulo": "IZAJE DE CARGAS",
+        "questions": [
+          {
+            "id": "custom-1792178394507-14-0-f40d",
+            "text": "¿Todos los elementos para izaje de cargas se encuentran en buen estado?"
+          },
+          {
+            "id": "custom-1792178394507-14-2-4f75",
+            "text": "¿El aparejo se encuentra etiquetado y"
+          },
+          {
+            "id": "custom-1792178394507-14-3-58f2",
+            "text": "¿Se encuentra la probeta de carga en el gancho de carga?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-15",
+        "titulo": "PROTECCION CONTRA CAIDAS",
+        "questions": [
+          {
+            "id": "custom-1792178394507-15-0-e1ee",
+            "text": "¿La línea de vida se encuentra en buen estado?"
+          },
+          {
+            "id": "custom-1792178394507-15-1-9b0f",
+            "text": "¿La línea de vida se encuentra debidamente colocada al gancho?"
+          },
+          {
+            "id": "custom-1792178394507-15-2-9b33",
+            "text": "¿La línea de vida se encuentra en un solo tramo?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-16",
+        "titulo": "FALSE CAR",
+        "questions": [
+          {
+            "id": "custom-1792178394507-16-0-ac8b",
+            "text": "¿Se encuentra debidamente instalado el False Car?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-17",
+        "titulo": "EQUIPAMENTO",
+        "questions": [
+          {
+            "id": "custom-1792178394507-17-0-a63a",
+            "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+          },
+          {
+            "id": "custom-1792178394507-17-1-3850",
+            "text": "¿El empleado posee linterna?"
+          },
+          {
+            "id": "custom-1792178394507-17-2-c525",
+            "text": "¿El empleado posee multímetro en buenas condiciones y calibrado?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792178394507-sub-18",
+        "titulo": "OTROS RIESGOS",
+        "questions": [
+          {
+            "id": "custom-1792178394507-18-0-4f96",
+            "text": "¿Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "custom-1792179559597",
+    "title": "REPARACION ASCENSOR",
+    "description": "VISITA DE SEGURIDAD E HIGIENE",
+    "code": "RA",
+    "questions": [
+      {
+        "id": "custom-1792179559597-0-0-94cc",
+        "text": "¿Se realizo el AST?"
+      },
+      {
+        "id": "custom-1792179559597-1-0-f18a",
+        "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792179559597-1-1-6e62",
+        "text": "¿Los E.P.P. están en buen estado?"
+      },
+      {
+        "id": "custom-1792179559597-2-0-af49",
+        "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+      },
+      {
+        "id": "custom-1792179559597-2-1-b79a",
+        "text": "¿El empleado conoce la vía de evacuación?"
+      },
+      {
+        "id": "custom-1792179559597-2-2-0acd",
+        "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+      },
+      {
+        "id": "custom-1792179559597-3-0-1c1e",
+        "text": "¿Hay extintor con fecha de vencimiento vigente y cargado en el área de trabajo?"
+      },
+      {
+        "id": "custom-1792179559597-4-0-2902",
+        "text": "¿Los lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+      },
+      {
+        "id": "custom-1792179559597-5-0-d7dd",
+        "text": "¿Existe cableado eléctrico expuesto?"
+      },
+      {
+        "id": "custom-1792179559597-5-1-3b31",
+        "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+      },
+      {
+        "id": "custom-1792179559597-5-2-0059",
+        "text": "¿Existe disyuntor diferencial y llaves térmicas?"
+      },
+      {
+        "id": "custom-1792179559597-5-3-3834",
+        "text": "¿Existe puesta a tierra en el tablero principal?"
+      },
+      {
+        "id": "custom-1792179559597-6-0-1cfd",
+        "text": "¿El empleado posee kit de LOTO completo?"
+      },
+      {
+        "id": "custom-1792179559597-7-0-19b7",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a techo de cabina?"
+      },
+      {
+        "id": "custom-1792179559597-7-1-b222",
+        "text": "¿Existe mando de revisión en buen estado con botón de stop, inspección, subir, común, bajar?"
+      },
+      {
+        "id": "custom-1792179559597-7-2-1841",
+        "text": "¿Funciona correctamente el botón de STOP?"
+      },
+      {
+        "id": "custom-1792179559597-7-3-22bb",
+        "text": "¿Funciona correctamente el comando de inspección?"
+      },
+      {
+        "id": "custom-1792179559597-7-4-643d",
+        "text": "¿Funciona correctamente el comando de subir-común-bajar?"
+      },
+      {
+        "id": "custom-1792179559597-7-5-6416",
+        "text": "¿La seguridad de puertas funciona correctamente?"
+      },
+      {
+        "id": "custom-1792179559597-7-6-aa5c",
+        "text": "¿Existen barandas y están en buenas condiciones?"
+      },
+      {
+        "id": "custom-1792179559597-7-7-c949",
+        "text": "¿Existe cáncamo?"
+      },
+      {
+        "id": "custom-1792179559597-7-8-988f",
+        "text": "¿Hay iluminación?"
+      },
+      {
+        "id": "custom-1792179559597-8-0-7c85",
+        "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+      },
+      {
+        "id": "custom-1792179559597-9-0-73ce",
+        "text": "¿El área de trabajo se encuentra ordenada y limpia en las inmediaciones?"
+      },
+      {
+        "id": "custom-1792179559597-9-1-4ae1",
+        "text": "¿Se han retirado objetos inflamables del entorno?"
+      },
+      {
+        "id": "custom-1792179559597-9-2-4bfb",
+        "text": "¿Existe un extintor acorde a la tarea a realizar?"
+      },
+      {
+        "id": "custom-1792179559597-9-3-21e5",
+        "text": "¿Los E.P.P. son los adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792179559597-10-0-6fa5",
+        "text": "¿El aislamiento de las pinzas porta electrodos y los bornes de conexión se encuentran aislados y en buen estado?"
+      },
+      {
+        "id": "custom-1792179559597-10-1-416f",
+        "text": "¿Los cables, terminales e interruptores se encuentran en buen estado?"
+      },
+      {
+        "id": "custom-1792179559597-10-2-9d8f",
+        "text": "¿El toma a 220v de la soldadora cuenta con puesta a tierra?"
+      },
+      {
+        "id": "custom-1792179559597-10-3-66f5",
+        "text": "¿Los E.P.P. son los adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792179559597-10-5-b548",
+        "text": "¿La iluminación es adecuada?"
+      },
+      {
+        "id": "custom-1792179559597-11-0-954d",
+        "text": "¿Los diferentes discos de trabajo se encuentran en buenas condiciones?"
+      },
+      {
+        "id": "custom-1792179559597-11-1-8529",
+        "text": "¿La amoladora posee carcasa de protección?"
+      },
+      {
+        "id": "custom-1792179559597-11-2-2919",
+        "text": "¿El mango de la amoladora se encuentra en buen estado?"
+      },
+      {
+        "id": "custom-1792179559597-11-3-8e45",
+        "text": "De ser necesario ¿Hay disponible un banco de trabajo?"
+      },
+      {
+        "id": "custom-1792179559597-11-4-cd6e",
+        "text": "¿La iluminación es adecuada?"
+      },
+      {
+        "id": "custom-1792179559597-12-0-f904",
+        "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+      },
+      {
+        "id": "custom-1792179559597-12-1-31e7",
+        "text": "¿El empleado posee linterna?"
+      },
+      {
+        "id": "custom-1792179559597-12-2-9a7d",
+        "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+      },
+      {
+        "id": "custom-1792179559597-13-0-585a",
+        "text": "¿Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+      }
+    ],
+    "subsecciones": [
+      {
+        "id": "custom-1792179559597-sub-0",
+        "titulo": "ANALISIS SEGURO DE TRABAJO (AST)",
+        "questions": [
+          {
+            "id": "custom-1792179559597-0-0-94cc",
+            "text": "¿Se realizo el AST?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-1",
+        "titulo": "ELEMENTOS DE PROTECCIÓN PERSONAL (EPP)",
+        "questions": [
+          {
+            "id": "custom-1792179559597-1-0-f18a",
+            "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+          },
+          {
+            "id": "custom-1792179559597-1-1-6e62",
+            "text": "¿Los E.P.P. están en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-2",
+        "titulo": "PROCEDIMIENTOS DE EMERGENCIAS",
+        "questions": [
+          {
+            "id": "custom-1792179559597-2-0-af49",
+            "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+          },
+          {
+            "id": "custom-1792179559597-2-1-b79a",
+            "text": "¿El empleado conoce la vía de evacuación?"
+          },
+          {
+            "id": "custom-1792179559597-2-2-0acd",
+            "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-3",
+        "titulo": "RIESGO DE INCENDIO",
+        "questions": [
+          {
+            "id": "custom-1792179559597-3-0-1c1e",
+            "text": "¿Hay extintor con fecha de vencimiento vigente y cargado en el área de trabajo?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-4",
+        "titulo": "MEDIO AMBIENTE",
+        "questions": [
+          {
+            "id": "custom-1792179559597-4-0-2902",
+            "text": "¿Los lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-5",
+        "titulo": "RIESGO ELECTRICO",
+        "questions": [
+          {
+            "id": "custom-1792179559597-5-0-d7dd",
+            "text": "¿Existe cableado eléctrico expuesto?"
+          },
+          {
+            "id": "custom-1792179559597-5-1-3b31",
+            "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+          },
+          {
+            "id": "custom-1792179559597-5-2-0059",
+            "text": "¿Existe disyuntor diferencial y llaves térmicas?"
+          },
+          {
+            "id": "custom-1792179559597-5-3-3834",
+            "text": "¿Existe puesta a tierra en el tablero principal?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-6",
+        "titulo": "APAGADO, BLOQUEO Y ETIQUETADO (LOTO)",
+        "questions": [
+          {
+            "id": "custom-1792179559597-6-0-1cfd",
+            "text": "¿El empleado posee kit de LOTO completo?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-7",
+        "titulo": "PUENTES AUTORIZADOS",
+        "questions": [
+          {
+            "id": "custom-1792179559597-7-0-19b7",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a techo de cabina?"
+          },
+          {
+            "id": "custom-1792179559597-7-1-b222",
+            "text": "¿Existe mando de revisión en buen estado con botón de stop, inspección, subir, común, bajar?"
+          },
+          {
+            "id": "custom-1792179559597-7-2-1841",
+            "text": "¿Funciona correctamente el botón de STOP?"
+          },
+          {
+            "id": "custom-1792179559597-7-3-22bb",
+            "text": "¿Funciona correctamente el comando de inspección?"
+          },
+          {
+            "id": "custom-1792179559597-7-4-643d",
+            "text": "¿Funciona correctamente el comando de subir-común-bajar?"
+          },
+          {
+            "id": "custom-1792179559597-7-5-6416",
+            "text": "¿La seguridad de puertas funciona correctamente?"
+          },
+          {
+            "id": "custom-1792179559597-7-6-aa5c",
+            "text": "¿Existen barandas y están en buenas condiciones?"
+          },
+          {
+            "id": "custom-1792179559597-7-7-c949",
+            "text": "¿Existe cáncamo?"
+          },
+          {
+            "id": "custom-1792179559597-7-8-988f",
+            "text": "¿Hay iluminación?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-8",
+        "titulo": "BARANDAS",
+        "questions": [
+          {
+            "id": "custom-1792179559597-8-0-7c85",
+            "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-9",
+        "titulo": "TRABAJOS EN CALIENTE",
+        "questions": [
+          {
+            "id": "custom-1792179559597-9-0-73ce",
+            "text": "¿El área de trabajo se encuentra ordenada y limpia en las inmediaciones?"
+          },
+          {
+            "id": "custom-1792179559597-9-1-4ae1",
+            "text": "¿Se han retirado objetos inflamables del entorno?"
+          },
+          {
+            "id": "custom-1792179559597-9-2-4bfb",
+            "text": "¿Existe un extintor acorde a la tarea a realizar?"
+          },
+          {
+            "id": "custom-1792179559597-9-3-21e5",
+            "text": "¿Los E.P.P. son los adecuados a la tarea?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-10",
+        "titulo": "TRABAJOS EN CALIENTE - TRABAJOS DE SOLDADURA",
+        "questions": [
+          {
+            "id": "custom-1792179559597-10-0-6fa5",
+            "text": "¿El aislamiento de las pinzas porta electrodos y los bornes de conexión se encuentran aislados y en buen estado?"
+          },
+          {
+            "id": "custom-1792179559597-10-1-416f",
+            "text": "¿Los cables, terminales e interruptores se encuentran en buen estado?"
+          },
+          {
+            "id": "custom-1792179559597-10-2-9d8f",
+            "text": "¿El toma a 220v de la soldadora cuenta con puesta a tierra?"
+          },
+          {
+            "id": "custom-1792179559597-10-3-66f5",
+            "text": "¿Los E.P.P. son los adecuados a la tarea?"
+          },
+          {
+            "id": "custom-1792179559597-10-5-b548",
+            "text": "¿La iluminación es adecuada?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-11",
+        "titulo": "TRABAJOS EN CALIENTE - TRABAJOS CON AMOLADORA",
+        "questions": [
+          {
+            "id": "custom-1792179559597-11-0-954d",
+            "text": "¿Los diferentes discos de trabajo se encuentran en buenas condiciones?"
+          },
+          {
+            "id": "custom-1792179559597-11-1-8529",
+            "text": "¿La amoladora posee carcasa de protección?"
+          },
+          {
+            "id": "custom-1792179559597-11-2-2919",
+            "text": "¿El mango de la amoladora se encuentra en buen estado?"
+          },
+          {
+            "id": "custom-1792179559597-11-3-8e45",
+            "text": "De ser necesario ¿Hay disponible un banco de trabajo?"
+          },
+          {
+            "id": "custom-1792179559597-11-4-cd6e",
+            "text": "¿La iluminación es adecuada?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-12",
+        "titulo": "EQUIPAMENTO",
+        "questions": [
+          {
+            "id": "custom-1792179559597-12-0-f904",
+            "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+          },
+          {
+            "id": "custom-1792179559597-12-1-31e7",
+            "text": "¿El empleado posee linterna?"
+          },
+          {
+            "id": "custom-1792179559597-12-2-9a7d",
+            "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792179559597-sub-13",
+        "titulo": "OTROS RIESGOS",
+        "questions": [
+          {
+            "id": "custom-1792179559597-13-0-585a",
+            "text": "¿Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "custom-1792431972266",
+    "title": "REPARACION ESCALERA MECANICA",
+    "description": "VISITA DE SEGURIDAD E HIGIENE",
+    "code": "VD",
+    "questions": [
+      {
+        "id": "custom-1792431972266-0-0-1092",
+        "text": "¿Se realizo el AST?"
+      },
+      {
+        "id": "custom-1792431972266-1-0-2cae",
+        "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792431972266-1-1-d137",
+        "text": "¿Los E.P.P. están en buen estado?"
+      },
+      {
+        "id": "custom-1792431972266-2-0-ffdf",
+        "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+      },
+      {
+        "id": "custom-1792431972266-2-1-6b36",
+        "text": "¿El empleado conoce la vía de evacuación?"
+      },
+      {
+        "id": "custom-1792431972266-2-2-50a7",
+        "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+      },
+      {
+        "id": "custom-1792431972266-3-0-38fd",
+        "text": "¿Hay extintor con fecha de vencimiento vigente y cargado en el área de trabajo?"
+      },
+      {
+        "id": "custom-1792431972266-4-0-4818",
+        "text": "¿Los lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+      },
+      {
+        "id": "custom-1792431972266-5-0-9624",
+        "text": "¿Existe cableado eléctrico expuesto?"
+      },
+      {
+        "id": "custom-1792431972266-5-1-29f6",
+        "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+      },
+      {
+        "id": "custom-1792431972266-5-2-eb1d",
+        "text": "¿Existe disyuntor diferencial y llaves térmicas?"
+      },
+      {
+        "id": "custom-1792431972266-5-3-d000",
+        "text": "¿Existe puesta a tierra en el tablero principal?"
+      },
+      {
+        "id": "custom-1792431972266-6-0-b152",
+        "text": "¿El empleado posee kit de LOTO completo?"
+      },
+      {
+        "id": "custom-1792431972266-7-0-fa48",
+        "text": "¿El empleado tiene los dos puentes autorizados?"
+      },
+      {
+        "id": "custom-1792431972266-8-0-a71e",
+        "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a fosa?"
+      },
+      {
+        "id": "custom-1792431972266-8-1-b171",
+        "text": "¿Existe manguera de revisión en buen estado?"
+      },
+      {
+        "id": "custom-1792431972266-8-2-24bc",
+        "text": "¿Funcionan correctamente los botones de la manguera de revisión?"
+      },
+      {
+        "id": "custom-1792431972266-8-3-c3b6",
+        "text": "¿Funciona correctamente el botón de STOP de fosa?"
+      },
+      {
+        "id": "custom-1792431972266-8-4-0368",
+        "text": "¿Funciona correctamente los dos botones de STOP de usuario?"
+      },
+      {
+        "id": "custom-1792431972266-8-5-153a",
+        "text": "¿Funcionan correctamente las seguridades de entrada de pasamanos?"
+      },
+      {
+        "id": "custom-1792431972266-8-6-b3fd",
+        "text": "¿Funcionan correctamente las seguridades de tapa de fosa?"
+      },
+      {
+        "id": "custom-1792431972266-8-7-6270",
+        "text": "¿Funcionan correctamente las seguridades de tapa de fosa?"
+      },
+      {
+        "id": "custom-1792431972266-8-8-c839",
+        "text": "¿Funcionan correctamente las seguridades de rotura de peldaño?"
+      },
+      {
+        "id": "custom-1792431972266-8-9-c9f6",
+        "text": "¿Funcionan correctamente las seguridades de rotura de peldaño?"
+      },
+      {
+        "id": "custom-1792431972266-9-0-de17",
+        "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+      },
+      {
+        "id": "custom-1792431972266-10-0-a032",
+        "text": "¿El área de trabajo se encuentra ordenada y limpia en las inmediaciones?"
+      },
+      {
+        "id": "custom-1792431972266-10-1-04c4",
+        "text": "¿Se han retirado objetos inflamables del entorno?"
+      },
+      {
+        "id": "custom-1792431972266-10-2-e80a",
+        "text": "¿Se han retirado objetos inflamables del entorno?"
+      },
+      {
+        "id": "custom-1792431972266-10-3-2681",
+        "text": "¿Los E.P.P. son los adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792431972266-11-0-7075",
+        "text": "¿El aislamiento de las pinzas porta electrodos y los bornes de conexión se encuentran aislados y en buen estado?"
+      },
+      {
+        "id": "custom-1792431972266-11-1-427e",
+        "text": "¿Los cables, terminales e interruptores se encuentran en buen estado?"
+      },
+      {
+        "id": "custom-1792431972266-11-2-1ec0",
+        "text": "¿El toma a 220v de la soldadora cuenta con puesta a tierra?"
+      },
+      {
+        "id": "custom-1792431972266-11-3-d674",
+        "text": "¿Los E.P.P. son los adecuados a la tarea?"
+      },
+      {
+        "id": "custom-1792431972266-11-4-7bc5",
+        "text": "¿La iluminación es adecuada?"
+      },
+      {
+        "id": "custom-1792431972266-12-0-1da8",
+        "text": "¿Los diferentes discos de trabajo se encuentran en buenas condiciones?"
+      },
+      {
+        "id": "custom-1792431972266-12-1-7311",
+        "text": "¿La amoladora posee carcasa de protección?"
+      },
+      {
+        "id": "custom-1792431972266-12-2-60a7",
+        "text": "¿El mango de la amoladora se encuentra en buen estado?"
+      },
+      {
+        "id": "custom-1792431972266-12-3-724f",
+        "text": "De ser necesario ¿Hay disponible un banco de trabajo?"
+      },
+      {
+        "id": "custom-1792431972266-12-4-39e6",
+        "text": "¿La iluminación es adecuada?"
+      },
+      {
+        "id": "custom-1792431972266-13-0-4982",
+        "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+      },
+      {
+        "id": "custom-1792431972266-13-1-58f8",
+        "text": "¿El empleado posee linterna?"
+      },
+      {
+        "id": "custom-1792431972266-13-2-5377",
+        "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+      },
+      {
+        "id": "custom-1792431972266-14-0-e3f9",
+        "text": "¿Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+      },
+      {
+        "id": "custom-1792431972266-14-1-3c4c",
+        "text": "¿La escalera tiene colocados sus respectivos pictogramas de seguridad arriba / abajo?"
+      }
+    ],
+    "subsecciones": [
+      {
+        "id": "custom-1792431972266-sub-0",
+        "titulo": "ANALISIS SEGURO DE TRABAJO (AST)",
+        "questions": [
+          {
+            "id": "custom-1792431972266-0-0-1092",
+            "text": "¿Se realizo el AST?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-1",
+        "titulo": "ELEMENTOS DE PROTECCION PERSONAL  (EPP)",
+        "questions": [
+          {
+            "id": "custom-1792431972266-1-0-2cae",
+            "text": "¿Se están utilizando los E.P.P. adecuados a la tarea?"
+          },
+          {
+            "id": "custom-1792431972266-1-1-d137",
+            "text": "¿Los E.P.P. están en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-2",
+        "titulo": "PROCEDIMIENTOS DE EMERGENCIAS",
+        "questions": [
+          {
+            "id": "custom-1792431972266-2-0-ffdf",
+            "text": "¿El empleado se reporta en la entrada y salida de la obra?"
+          },
+          {
+            "id": "custom-1792431972266-2-1-6b36",
+            "text": "¿El empleado conoce la vía de evacuación?"
+          },
+          {
+            "id": "custom-1792431972266-2-2-50a7",
+            "text": "¿El empleado tiene botiquín de primeros auxilios y sabe como usarlo?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-3",
+        "titulo": "RIESGO DE INCENDIO",
+        "questions": [
+          {
+            "id": "custom-1792431972266-3-0-38fd",
+            "text": "¿Hay extintor con fecha de vencimiento vigente y cargado en el área de trabajo?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-4",
+        "titulo": "MEDIO AMBIENTE",
+        "questions": [
+          {
+            "id": "custom-1792431972266-4-0-4818",
+            "text": "¿Los lubricantes y desengrasantes se encuentran debidamente etiquetados y en un envase en buen estado?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-5",
+        "titulo": "RIESGO ELECTRICO",
+        "questions": [
+          {
+            "id": "custom-1792431972266-5-0-9624",
+            "text": "¿Existe cableado eléctrico expuesto?"
+          },
+          {
+            "id": "custom-1792431972266-5-1-29f6",
+            "text": "¿Existe tapa y contratapa en los tableros eléctricos?"
+          },
+          {
+            "id": "custom-1792431972266-5-2-eb1d",
+            "text": "¿Existe disyuntor diferencial y llaves térmicas?"
+          },
+          {
+            "id": "custom-1792431972266-5-3-d000",
+            "text": "¿Existe puesta a tierra en el tablero principal?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-6",
+        "titulo": "APAGADO, BLOQUEO Y ETIQUETADO (LOTO)",
+        "questions": [
+          {
+            "id": "custom-1792431972266-6-0-b152",
+            "text": "¿El empleado posee kit de LOTO completo?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-7",
+        "titulo": "PUENTES AUTORIZADOS",
+        "questions": [
+          {
+            "id": "custom-1792431972266-7-0-fa48",
+            "text": "¿El empleado tiene los dos puentes autorizados?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-8",
+        "titulo": "ACCESO SEGURO A FOSA SUPERIOR - INFERIOR",
+        "questions": [
+          {
+            "id": "custom-1792431972266-8-0-a71e",
+            "text": "¿El empleado demuestra conocimientos del procedimiento de acceso seguro a fosa?"
+          },
+          {
+            "id": "custom-1792431972266-8-1-b171",
+            "text": "¿Existe manguera de revisión en buen estado?"
+          },
+          {
+            "id": "custom-1792431972266-8-2-24bc",
+            "text": "¿Funcionan correctamente los botones de la manguera de revisión?"
+          },
+          {
+            "id": "custom-1792431972266-8-3-c3b6",
+            "text": "¿Funciona correctamente el botón de STOP de fosa?"
+          },
+          {
+            "id": "custom-1792431972266-8-4-0368",
+            "text": "¿Funciona correctamente los dos botones de STOP de usuario?"
+          },
+          {
+            "id": "custom-1792431972266-8-5-153a",
+            "text": "¿Funcionan correctamente las seguridades de entrada de pasamanos?"
+          },
+          {
+            "id": "custom-1792431972266-8-6-b3fd",
+            "text": "¿Funcionan correctamente las seguridades de tapa de fosa?"
+          },
+          {
+            "id": "custom-1792431972266-8-7-6270",
+            "text": "¿Funcionan correctamente las seguridades de tapa de fosa?"
+          },
+          {
+            "id": "custom-1792431972266-8-8-c839",
+            "text": "¿Funcionan correctamente las seguridades de rotura de peldaño?"
+          },
+          {
+            "id": "custom-1792431972266-8-9-c9f6",
+            "text": "¿Funcionan correctamente las seguridades de rotura de peldaño?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-9",
+        "titulo": "BARANDAS",
+        "questions": [
+          {
+            "id": "custom-1792431972266-9-0-de17",
+            "text": "¿El empleado posee barandas de señalización hacia el usuario?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-10",
+        "titulo": "TRABAJOS EN CALIENTE",
+        "questions": [
+          {
+            "id": "custom-1792431972266-10-0-a032",
+            "text": "¿El área de trabajo se encuentra ordenada y limpia en las inmediaciones?"
+          },
+          {
+            "id": "custom-1792431972266-10-1-04c4",
+            "text": "¿Se han retirado objetos inflamables del entorno?"
+          },
+          {
+            "id": "custom-1792431972266-10-2-e80a",
+            "text": "¿Se han retirado objetos inflamables del entorno?"
+          },
+          {
+            "id": "custom-1792431972266-10-3-2681",
+            "text": "¿Los E.P.P. son los adecuados a la tarea?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-11",
+        "titulo": "TRABAJOS EN CALIENTE - TRABAJOS DE SOLDADURA",
+        "questions": [
+          {
+            "id": "custom-1792431972266-11-0-7075",
+            "text": "¿El aislamiento de las pinzas porta electrodos y los bornes de conexión se encuentran aislados y en buen estado?"
+          },
+          {
+            "id": "custom-1792431972266-11-1-427e",
+            "text": "¿Los cables, terminales e interruptores se encuentran en buen estado?"
+          },
+          {
+            "id": "custom-1792431972266-11-2-1ec0",
+            "text": "¿El toma a 220v de la soldadora cuenta con puesta a tierra?"
+          },
+          {
+            "id": "custom-1792431972266-11-3-d674",
+            "text": "¿Los E.P.P. son los adecuados a la tarea?"
+          },
+          {
+            "id": "custom-1792431972266-11-4-7bc5",
+            "text": "¿La iluminación es adecuada?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-12",
+        "titulo": "TRABAJOS EN CALIENTE - TRABAJOS CON AMOLADORA",
+        "questions": [
+          {
+            "id": "custom-1792431972266-12-0-1da8",
+            "text": "¿Los diferentes discos de trabajo se encuentran en buenas condiciones?"
+          },
+          {
+            "id": "custom-1792431972266-12-1-7311",
+            "text": "¿La amoladora posee carcasa de protección?"
+          },
+          {
+            "id": "custom-1792431972266-12-2-60a7",
+            "text": "¿El mango de la amoladora se encuentra en buen estado?"
+          },
+          {
+            "id": "custom-1792431972266-12-3-724f",
+            "text": "De ser necesario ¿Hay disponible un banco de trabajo?"
+          },
+          {
+            "id": "custom-1792431972266-12-4-39e6",
+            "text": "¿La iluminación es adecuada?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-13",
+        "titulo": "EQUIPAMENTO",
+        "questions": [
+          {
+            "id": "custom-1792431972266-13-0-4982",
+            "text": "¿El empleado posee las herramientas necesarias y están en buen estado?"
+          },
+          {
+            "id": "custom-1792431972266-13-1-58f8",
+            "text": "¿El empleado posee linterna?"
+          },
+          {
+            "id": "custom-1792431972266-13-2-5377",
+            "text": "¿El empleado posee multímetro en buenas condiciones y su calibración esta vigente?"
+          }
+        ]
+      },
+      {
+        "id": "custom-1792431972266-sub-14",
+        "titulo": "OTROS RIESGOS",
+        "questions": [
+          {
+            "id": "custom-1792431972266-14-0-e3f9",
+            "text": "¿Se observaron otros riesgos o alguna cuestión de seguridad para comentar?"
+          },
+          {
+            "id": "custom-1792431972266-14-1-3c4c",
+            "text": "¿La escalera tiene colocados sus respectivos pictogramas de seguridad arriba / abajo?"
+          }
+        ]
+      }
+    ]
+  }
+]

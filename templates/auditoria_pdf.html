@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 1.5cm; }
+  body { font-family: Helvetica, Arial, sans-serif; font-size: 10px; color: #1c2733; }
+  h1 { color: #123a68; font-size: 20px; margin: 0 0 2px 0; }
+  .sub { color: #6b7580; font-size: 11px; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; }
+  .datos td { padding: 4px 6px; border: 1px solid #dde1e6; }
+  .datos td.k { background: #f4f6f1; font-weight: bold; width: 25%; }
+  h2 { color: #123a68; font-size: 13px; margin: 16px 0 6px 0; }
+  .resp th { background: #123a68; color: #fff; padding: 5px; text-align: left; }
+  .resp td { padding: 5px; border-bottom: 1px solid #dde1e6; vertical-align: top; }
+  .si { color: #198754; font-weight: bold; }
+  .no { color: #b84048; font-weight: bold; }
+  .na { color: #6b7580; font-weight: bold; }
+  .firmas td { width: 50%; padding: 6px; border: 1px solid #dde1e6; vertical-align: top; }
+</style>
+</head>
+<body>
+  <h1>{{ a.titulo }}</h1>
+  <div class="sub">Auditoría #{{ a.id }} · {{ a.fecha }} · Auditor: {{ usuario.nombre or usuario.email }}</div>
+
+  <table class="datos">
+    <tr><td class="k">Proyecto / Obra</td><td>{{ a.proyecto }}</td>
+        <td class="k">Dirección</td><td>{{ a.direccion }}</td></tr>
+    <tr><td class="k">Supervisor de obra</td><td>{{ a.supervisor_obra }}</td>
+        <td class="k">N° de equipo</td><td>{{ a.numero_equipo }}</td></tr>
+    <tr><td class="k">Actividad</td><td>{{ a.actividad }}</td>
+        <td class="k">Participantes auditados</td><td>{{ a.participantes_auditados }}</td></tr>
+  </table>
+
+  <h2>Resultados</h2>
+  <table class="resp">
+    <thead>
+      <tr><th width="45%">Pregunta</th><th width="10%">Resp.</th><th>Observación</th></tr>
+    </thead>
+    <tbody>
+      {% for r in a.respuestas %}
+      <tr>
+        <td>{{ r.pregunta }}</td>
+        <td class="{{ r.respuesta }}">{{ {'si': 'SÍ', 'no': 'NO', 'na': 'N/A'}[r.respuesta] }}</td>
+        <td>
+          {{ r.observacion }}
+          {% for img in r.imagenes %}
+            <br><img src="/static/uploads/{{ img }}" width="120">
+          {% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Firmas</h2>
+  <table class="firmas">
+    <tr>
+      <td>
+        <b>Auditor</b><br>{{ a.auditor_aclaracion }}<br>
+        {% if a.auditor_firma %}<img src="{{ a.auditor_firma }}" width="150">{% endif %}
+      </td>
+      <td>
+        <b>Auditado</b><br>{{ a.auditado_nombre }} · Doc: {{ a.auditado_documento }}<br>
+        Puesto: {{ a.auditado_puesto }}<br>
+        {% if a.auditado_firma %}<img src="{{ a.auditado_firma }}" width="150">{% endif %}
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

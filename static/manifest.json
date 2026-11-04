@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}TKE auditoria{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background:#f5f6f2; }
+    .text-navy { color:#173f72; }
+    .btn-primary {
+      --bs-btn-bg:#173f72; --bs-btn-border-color:#173f72;
+      --bs-btn-hover-bg:#103b65; --bs-btn-hover-border-color:#103b65;
+      --bs-btn-active-bg:#103b65; --bs-btn-active-border-color:#103b65;
+      --bs-btn-disabled-bg:#9ca9b2; --bs-btn-disabled-border-color:#9ca9b2;
+    }
+    .progress-bar { background:#285987; }
+    .logo-ico { width:40px; height:40px; border-radius:12px; background:#173f72; color:#fff; display:grid; place-items:center; font-weight:800; }
+    .avatar { width:40px; height:40px; border-radius:50%; background:#dce8f2; color:#174978; font-weight:800; display:grid; place-items:center; font-size:14px; object-fit: cover; }
+    .card-hover { transition:.25s; }
+    .card-hover:hover { transform:translateY(-4px); border-color:#9eb5c9; box-shadow:0 14px 32px rgba(27,48,72,.11); }
+    .code-badge { width:48px; height:48px; border-radius:12px; background:#eaf0f5; color:#204f7f; font-weight:900; display:grid; place-items:center; transition:.25s; }
+    .card:hover .code-badge { background:#204f7f; color:#fff; }
+    .card-add { border:2px dashed #bac6ca; background:#f9faf7; }
+    .plus { width:52px; height:52px; border-radius:50%; background:#fff; box-shadow:0 0 0 1px #dce3e4; display:grid; place-items:center; font-size:28px; color:#275782; }
+    .num-badge { flex:none; width:28px; height:28px; border-radius:50%; border:1px solid #b8b8ab; display:grid; place-items:center; font-size:12px; font-weight:900; color:#315270; }
+  </style>
+
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <meta name="theme-color" content="#173f72">
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/static/sw.js');
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <!-- Modal para cambiar/subir la foto de perfil -->
+  <div class="modal fade" id="modalCambiarFoto" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold text-navy">Configurar foto de perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <form action="{{ url_for('subir_foto_perfil') }}" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="foto" class="form-label fw-bold">Selecciona una imagen (PNG, JPG, WEBP)</label>
+              <input class="form-control" type="file" id="foto" name="foto" accept=".png, .jpg, .jpeg, .webp" required>
+              <div class="form-text">La imagen se ajustará automáticamente a formato cuadrado. Máximo 10 MB.</div>
+            </div>
+          </div>
+          <div class="modal-footer justify-content-between">
+            {% if avatar_url %}
+              <button type="submit" formaction="{{ url_for('eliminar_foto_perfil') }}" class="btn btn-outline-danger btn-sm">
+                Eliminar foto actual
+              </button>
+            {% else %}
+              <div></div>
+            {% endif %}
+
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary btn-sm">Subir foto</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <header class="bg-white border-bottom sticky-top">
+    <div class="container-fluid px-4 d-flex align-items-center justify-content-between py-3">
+      {% block back %}{% endblock %}
+
+      <div class="d-flex align-items-center gap-2">
+        <img src="{{ url_for('static', filename='img/logoteknica.svg') }}"
+             alt="Logo TKE" style="height: 38px; width: auto; object-fit: contain;">
+        <div class="lh-sm">
+          <div class="small text-uppercase fw-bold text-secondary"
+               style="font-size: 0.65rem; letter-spacing: .5px;">Control operativo</div>
+          <div class="fs-5 fw-bold text-navy">Auditoría</div>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        {% if session.get('rol') == 'admin' %}
+          <a href="{{ url_for('admin_panel') }}" class="btn btn-outline-primary btn-sm">Panel Admin</a>
+        {% else %}
+          <a href="{{ url_for('mis_auditorias') }}" class="btn btn-outline-primary btn-sm">Mis auditorías</a>
+        {% endif %}
+
+        <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Cerrar Sesión</a>
+
+        <a href="#" data-bs-toggle="modal" data-bs-target="#modalCambiarFoto" class="text-decoration-none" title="Cambiar foto de perfil">
+          {% if avatar_url %}
+            <img src="{{ avatar_url }}" alt="Perfil" class="rounded-circle avatar" width="40" height="40">
+          {% else %}
+            <div class="avatar">TKE</div>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center pb-2">
+      <button id="install-btn" style="display: none;" class="btn btn-sm btn-primary">
+        📥 Instalar Aplicación TKE
+      </button>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <div id="flash">
+      {% with msgs = get_flashed_messages(with_categories=true) %}
+        {% for cat, m in msgs %}
+          <div class="alert alert-{{ 'success' if cat == 'ok' else 'danger' }} alert-dismissible fade show" role="alert">
+            {{ m }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        {% endfor %}
+      {% endwith %}
+    </div>
+
+    <div id="contenido">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Las alertas desaparecen solas a los 2 segundos
+    function autoCerrarAlertas() {
+      document.querySelectorAll('#flash .alert').forEach(function (el) {
+        setTimeout(function () {
+          bootstrap.Alert.getOrCreateInstance(el).close();
+        }, 2000);
+      });
+    }
+    document.addEventListener('DOMContentLoaded', autoCerrarAlertas);
+
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const installBtn = document.getElementById('install-btn');
+        if (installBtn) {
+            installBtn.style.display = 'block';
+        }
+    });
+
+    const installBtnEl = document.getElementById('install-btn');
+    if (installBtnEl) {
+        installBtnEl.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                console.log('El usuario aceptó instalar la PWA');
+            }
+            deferredPrompt = null;
+            document.getElementById('install-btn').style.display = 'none';
+        });
+    }
+  </script>
+  <script src="{{ url_for('static', filename='ajax.js') }}" defer></script>
+</body>
+</html>

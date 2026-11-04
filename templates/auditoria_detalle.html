@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block title %}Detalle de Auditoría · AuditSafe{% endblock %}
+{% block back %}<a class="btn btn-light fw-bold" href="{{ url_for('admin_panel') }}">← Volver al Panel</a>{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+  <div>
+    <p class="small fw-bold text-uppercase text-primary mb-2">Detalle de Auditoría · Registrada</p>
+    <h1 class="display-6 fw-bolder text-navy">{{ a.titulo }}</h1>
+    <p class="text-secondary mb-0">Visualización de la auditoría completada por el supervisor.</p>
+  </div>
+  <div>
+    <a href="{{ url_for('admin_panel') }}" class="btn btn-secondary fw-bold px-4">Volver al Panel</a>
+  </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- CABECERA INSTITUCIONAL TEKNICA ELEVACION S.A.                    -->
+<!-- ============================================================== -->
+<div class="card mb-4 border-secondary shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-bordered border-dark mb-0 align-middle text-center" style="font-size: 0.9rem;">
+            <tbody>
+                <!-- Fila de Logo y Título General -->
+                <tr>
+                    <td class="align-middle bg-light" style="width: 25%;">
+                        <img src="{{ url_for('static', filename='img/teknicalogo.png') }}" alt="Teknica Elevación" class="img-fluid" style="max-height: 50px;" onerror="this.style.display='none'">
+                    </td>
+                    <td colspan="3" class="bg-light align-middle">
+                        <h5 class="fw-bold mb-0 text-primary">VISITA DE SEGURIDAD E HIGIENE</h5>
+                        <h6 class="fw-bold mb-0 text-dark">TEKNICA ELEVACION S.A.</h6>
+                    </td>
+                </tr>
+
+                <!-- Fila 1: Fecha y Supervisor -->
+                <tr>
+                    <th class="bg-light fw-bold text-start ps-3 align-middle" style="width: 15%;">Fecha:</th>
+                    <td style="width: 35%;" class="text-center">{{ a.fecha }}</td>
+                    <th class="bg-light fw-bold text-start ps-3 align-middle" style="width: 15%;">Supervisor de la obra:</th>
+                    <td style="width: 35%;" class="text-center">{{ a.supervisor_obra if a.supervisor_obra else 'N/A' }}</td>
+                </tr>
+
+                <!-- Fila 2: Actividad y Participantes -->
+                <tr>
+                    <th class="bg-light fw-bold text-start ps-3 align-middle">Actividad:</th>
+                    <td class="fw-bold text-center">{{ a.actividad if a.actividad else a.titulo }}</td>
+                    <th class="bg-light fw-bold text-start ps-3 align-middle">Participantes Auditados:</th>
+                    <td class="text-center">{{ a.participantes_auditados if a.participantes_auditados else 'N/A' }}</td>
+                </tr>
+
+                <!-- Fila 3: Dirección y Visita realizada por -->
+                <tr>
+                    <th class="bg-light fw-bold text-start ps-3 align-middle">Dirección:</th>
+                    <td class="text-center">{{ a.direccion if a.direccion else 'N/A' }}</td>
+                    <th class="bg-light fw-bold text-start ps-3 align-middle">Visita realizada por:</th>
+                    <td class="text-center">{{ usuario.nombre if usuario and usuario.nombre else (usuario.email if usuario else a.usuario) }}</td>
+                </tr>
+
+                <!-- Fila 4: Proyecto y Número de equipo -->
+                <tr>
+                    <th class="bg-light fw-bold text-start ps-3 align-middle">Proyecto:</th>
+                    <td class="text-center">{{ a.proyecto if a.proyecto else 'N/A' }}</td>
+                    <th class="bg-light fw-bold text-start ps-3 align-middle">Numero de equipo:</th>
+                    <td class="text-center">{{ a.numero_equipo if a.numero_equipo else 'N/A' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- TABLA DE PREGUNTAS Y RESPUESTAS                                -->
+<!-- ============================================================== -->
+<div class="table-responsive">
+  <table class="table table-bordered align-middle bg-white mb-0">
+    <caption class="caption-top text-center fw-bold text-uppercase text-navy small">CUESTIONARIO - RESPUESTAS REGISTRADAS.</caption>
+    <thead class="table-primary text-uppercase small">
+      <tr>
+        <th>Control a verificar</th>
+        <th class="text-center">Respuesta</th>
+        <th>Observaciones · Acción correctiva e Imágenes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% set global_index = namespace(value=0) %}
+      {% for sub in seccion.subsecciones %}
+        <!-- Fila de Encabezado Azul para la Sección de Preguntas -->
+        <tr class="table-primary">
+          <td colspan="3" class="fw-bold text-uppercase text-center text-dark bg-opacity-25" style="background-color: #1d4ed8; color: white !important;">
+            {{ sub.titulo }}
+          </td>
+        </tr>
+
+        <!-- Preguntas de esta subsección -->
+        {% for q in sub.questions %}
+        {% set global_index.value = global_index.value + 1 %}
+        <!-- Buscamos la respuesta correspondiente a esta pregunta en la base de datos -->
+        {% set resp_obj = namespace(respuesta='', observacion='', imagenes=[]) %}
+        {% for r in a.respuestas %}
+          {% if r.question_id == q.id %}
+            {% set resp_obj.respuesta = r.respuesta %}
+            {% set resp_obj.observacion = r.observacion %}
+            {% set resp_obj.imagenes = r.imagenes %}
+          {% endif %}
+        {% endfor %}
+        <tr>
+          <td style="min-width:260px">
+            <div class="d-flex align-items-center gap-3">
+              <span class="num-badge">{{ global_index.value }}</span>
+              <span class="fw-semibold">{{ q.text }}</span>
+            </div>
+          </td>
+          <td class="text-center" style="min-width:170px">
+            <!-- Botones estáticos de solo lectura (simulando selección) -->
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-sm {% if resp_obj.respuesta == 'si' %}btn-success fw-bold{% else %}btn-outline-success text-muted{% endif %}" disabled>Sí</button>
+              <button type="button" class="btn btn-sm {% if resp_obj.respuesta == 'no' %}btn-danger fw-bold{% else %}btn-outline-danger text-muted{% endif %}" disabled>No</button>
+              <button type="button" class="btn btn-sm {% if resp_obj.respuesta == 'na' %}btn-secondary fw-bold{% else %}btn-outline-secondary text-muted{% endif %}" disabled>N/A</button>
+            </div>
+          </td>
+          <td style="min-width:280px">
+            <div class="p-2 bg-light border rounded mb-2" style="font-size: 0.9rem; min-height: 45px;">
+              {{ resp_obj.observacion if resp_obj.observacion else '<span class="text-muted fst-italic">Sin observaciones registradas.</span>' | safe }}
+            </div>
+            {% if resp_obj.imagenes and resp_obj.imagenes | length > 0 %}
+            <div class="d-flex align-items-center gap-2 mt-2">
+              {% for img in resp_obj.imagenes %}
+                <a href="{{ url_for('static', filename='uploads/' + img) }}" target="_blank" title="Ver imagen completa">
+                  <img src="{{ url_for('static', filename='uploads/' + img) }}" alt="Evidencia" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                </a>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================================== -->
+<!-- FIRMAS Y DATOS DEL AUDITADO                                    -->
+<!-- ============================================================== -->
+<div class="row g-4 mt-1">
+  <!-- Columna Auditor -->
+  <div class="col-lg-6">
+    <div class="card p-4 h-100">
+      <h2 class="h6 fw-bold text-uppercase text-navy mb-3">Auditor</h2>
+
+      <label class="form-label fw-bold">Firma registrada</label>
+      <div class="border bg-light text-center p-2 mb-3" style="height: 180px; display: flex; align-items: center; justify-content: center;">
+        {% if a.auditor_firma %}
+          <img src="{{ a.auditor_firma }}" alt="Firma Auditor" style="max-height: 160px; max-width: 100%;">
+        {% else %}
+          <span class="text-muted fst-italic">Sin firma registrada</span>
+        {% endif %}
+      </div>
+
+      <label class="form-label fw-bold">Aclaración</label>
+      <div class="form-control bg-light">{{ a.auditor_aclaracion if a.auditor_aclaracion else 'N/A' }}</div>
+    </div>
+  </div>
+
+  <!-- Columna Auditado -->
+  <div class="col-lg-6">
+    <div class="card p-4 h-100">
+      <h2 class="h6 fw-bold text-uppercase text-navy mb-3">Datos y Firma del Auditado</h2>
+
+      <label class="form-label fw-bold">Nombre y apellido (Aclaración)</label>
+      <div class="form-control bg-light mb-3">{{ a.auditado_nombre if a.auditado_nombre else 'N/A' }}</div>
+
+      <label class="form-label fw-bold">DNI o legajo</label>
+      <div class="form-control bg-light mb-3">{{ a.auditado_documento if a.auditado_documento else 'N/A' }}</div>
+
+      <label class="form-label fw-bold">Puesto o sector</label>
+      <div class="form-control bg-light mb-3">{{ a.auditado_puesto if a.auditado_puesto else 'N/A' }}</div>
+
+      <label class="form-label fw-bold">Firma registrada</label>
+      <div class="border bg-light text-center p-2 mb-2" style="height: 140px; display: flex; align-items: center; justify-content: center;">
+        {% if a.auditado_firma %}
+          <img src="{{ a.auditado_firma }}" alt="Firma Auditado" style="max-height: 120px; max-width: 100%;">
+        {% else %}
+          <span class="text-muted fst-italic">Sin firma registrada</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-end mt-4">
+  <a href="{{ url_for('admin_panel') }}" class="btn btn-secondary fw-bold px-4">← Volver al Panel de Administración</a>
+</div>
+{% endblock %}

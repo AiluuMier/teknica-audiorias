@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <p class="small fw-bold text-uppercase text-primary mb-1">Administración del sistema</p>
+    <h1 class="display-6 fw-bolder text-navy">Panel General</h1>
+  </div>
+  <a href="{{ url_for('inicio') }}" class="btn btn-outline-secondary">← Volver al inicio</a>
+</div>
+
+<!-- Tarjetas de Métricas -->
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card p-3 border-0 shadow-sm">
+      <small class="text-secondary fw-bold text-uppercase">Secciones Activas</small>
+      <div class="fs-2 fw-bold text-navy mt-1">{{ total_secciones }}</div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3 border-0 shadow-sm">
+      <small class="text-secondary fw-bold text-uppercase">Auditorías Realizadas</small>
+      <div class="fs-2 fw-bold text-navy mt-1">{{ total_auditorias }}</div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3 border-0 shadow-sm">
+      <small class="text-secondary fw-bold text-uppercase">Usuarios en Sistema</small>
+      <div class="fs-2 fw-bold text-navy mt-1">{{ usuarios|length }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Crear usuario -->
+<div class="card border-0 shadow-sm p-4 mb-4">
+  <h2 class="h5 fw-bold text-navy mb-3">Crear usuario</h2>
+  <form action="{{ url_for('crear_usuario_web') }}" method="post" class="row g-2" data-ajax>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="col-md-3"><input type="text" name="nombre" class="form-control" placeholder="Nombre"></div>
+    <div class="col-md-3"><input type="email" name="email" class="form-control" placeholder="Correo" required></div>
+    <div class="col-md-2"><input type="password" name="password" class="form-control" placeholder="Contraseña" required></div>
+    <div class="col-md-2">
+      <select name="rol" class="form-select">
+        <option value="supervisor">supervisor</option>
+        <option value="admin">admin</option>
+      </select>
+    </div>
+    <div class="col-md-2 d-grid"><button class="btn btn-primary">Crear</button></div>
+  </form>
+</div>
+
+<!-- Tabla de Usuarios Registrados -->
+<div class="card border-0 shadow-sm p-4 mb-4">
+  <h2 class="h5 fw-bold text-navy mb-3">Usuarios Registrados</h2>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Rol</th>
+          <th>Estado</th>
+          <th>Auditorías ({{ mes }})</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in usuarios %}
+        <tr>
+          <td class="fw-bold">{{ u.nombre if u.nombre else 'Sin nombre' }}</td>
+          <td class="text-secondary">{{ u.email }}</td>
+          <td>
+            <form action="{{ url_for('cambiar_rol_web', user_id=u.id) }}" method="post" class="m-0" data-ajax data-autosubmit>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <select name="rol"
+                      class="form-select form-select-sm w-auto {{ 'border-danger text-danger' if u.rol == 'admin' else 'border-primary text-primary' }}"
+                      {% if u.id == session.get('user_id') %}disabled title="No puedes cambiar tu propio rol"{% endif %}>
+                <option value="admin"      {{ 'selected' if u.rol == 'admin' }}>admin</option>
+                <option value="supervisor" {{ 'selected' if u.rol == 'supervisor' }}>supervisor</option>
+              </select>
+            </form>
+          </td>
+          <td>
+            {% if u.activo %}
+              <span class="text-success fw-bold small">● Activo</span>
+            {% else %}
+              <span class="text-danger fw-bold small">● Inactivo</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if u.rol == 'supervisor' %}
+              <strong>{{ conteo_mes.get(u.id, 0) }}</strong>
+            {% else %}
+              <span class="text-secondary">—</span>
+            {% endif %}
+          </td>
+          <td class="text-end">
+            {% if u.rol != 'admin' %}
+            <form action="{{ url_for('eliminar_usuario', user_id=u.id) }}" method="post" class="m-0" data-ajax
+                  onsubmit="return confirm('¿Eliminar a {{ u.email }}?')">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+            </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Auditorías realizadas -->
+<div class="card border-0 shadow-sm p-4 mb-4">
+  <h2 class="h5 fw-bold text-navy mb-3">Auditorías realizadas</h2>
+
+  <form method="get" action="{{ url_for('admin_panel') }}" class="d-flex gap-2 mb-3" data-ajax data-autosubmit>
+    <select name="usuario" class="form-select">
+      <option value="">Todos los supervisores</option>
+      {% for s in supervisores %}
+        <option value="{{ s.id }}" {% if s.id == usuario_sel %}selected{% endif %}>
+          {{ s.email }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <select name="mes" class="form-select">
+      {% for m in meses %}
+        <option value="{{ m }}" {% if m == mes %}selected{% endif %}>{{ m }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+  <div class="mb-3">
+    <div class="text-secondary small text-uppercase fw-bold">Auditorías en {{ mes }}</div>
+    <div class="fs-2 fw-bold text-navy">{{ auditorias_mes|length }}</div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Supervisor</th>
+          <th>Sección</th>
+          <th>Respuestas "No"</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for a in auditorias_mes %}
+          <tr>
+            <td>{{ a.fecha }}</td>
+            <td>{{ a.supervisor }}</td>
+            <td>{{ a.titulo }}</td>
+            <td>{{ a.cant_no }} de {{ a.total }}</td>
+            <td class="text-end">
+              <a href="{{ url_for('ver_auditoria', audit_id=a.id) }}" class="btn btn-sm btn-outline-primary">Ver auditoría</a>
+            </td>
+          </tr>
+        {% else %}
+          <tr><td colspan="5" class="text-secondary">Sin auditorías este mes.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

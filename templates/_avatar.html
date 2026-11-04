@@ -1,0 +1,32 @@
+<div class="dropdown">
+  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle hide-arrow" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+    {% if avatar_url %}
+      <img src="{{ avatar_url }}" alt="Avatar" width="36" height="36" class="rounded-circle object-fit-cover shadow-sm">
+    {% else %}
+      <div class="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold shadow-sm" style="width: 36px; height: 36px; font-size: 0.85rem; background-color: #0d233a;">
+        {{ avatar_iniciales }}
+      </div>
+    {% endif %}
+  </a>
+
+  <!-- Menú desplegable -->
+  <ul class="dropdown-menu dropdown-menu-end text-small shadow py-2" aria-labelledby="dropdownUser1">
+    <li><h6 class="dropdown-header text-truncate" style="max-width: 200px;">{{ session.get('nombre') or session.get('email', 'Usuario') }}</h6></li>
+    <li><hr class="dropdown-divider"></li>
+    
+    <!-- Opción que activa el modal -->
+    <li>
+      <button type="button" class="dropdown-item py-2" data-bs-toggle="modal" data-bs-target="#modalCambiarFoto">
+        Cambiar foto de perfil
+      </button>
+    </li>
+
+    <li><hr class="dropdown-divider"></li>
+    <li>
+      <form action="{{ url_for('logout') }}" method="post" class="m-0">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit" class="dropdown-item text-danger py-2">Cerrar sesión</button>
+      </form>
+    </li>
+  </ul>
+</div>
