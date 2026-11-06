@@ -75,7 +75,7 @@
               <select name="rol"
                       class="form-select form-select-sm w-auto {{ 'border-danger text-danger' if u.rol == 'admin' else 'border-primary text-primary' }}"
                       {% if u.id == session.get('user_id') %}disabled title="No puedes cambiar tu propio rol"{% endif %}>
-                <option value="admin"      {{ 'selected' if u.rol == 'admin' }}>admin</option>
+                <option value="admin"    {{ 'selected' if u.rol == 'admin' }}>admin</option>
                 <option value="supervisor" {{ 'selected' if u.rol == 'supervisor' }}>supervisor</option>
               </select>
             </form>
@@ -95,13 +95,16 @@
             {% endif %}
           </td>
           <td class="text-end">
-            {% if u.rol != 'admin' %}
-            <form action="{{ url_for('eliminar_usuario', user_id=u.id) }}" method="post" class="m-0" data-ajax
-                  onsubmit="return confirm('¿Eliminar a {{ u.email }}?')">
-              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-              <button class="btn btn-sm btn-outline-danger">Eliminar</button>
-            </form>
-            {% endif %}
+            <div class="d-flex gap-1 justify-content-end align-items-center">
+              <a href="{{ url_for('editar_usuario', user_id=u.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+              {% if u.rol != 'admin' %}
+              <form action="{{ url_for('eliminar_usuario', user_id=u.id) }}" method="post" class="m-0" data-ajax
+                    onsubmit="return confirm('¿Eliminar a {{ u.email }}?')">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+              </form>
+              {% endif %}
+            </div>
           </td>
         </tr>
         {% endfor %}

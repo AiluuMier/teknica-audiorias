@@ -12,7 +12,7 @@ import click
 from flask import (Flask, abort, flash, g, redirect, render_template, request,
                    send_file, session, url_for)
 from flask_wtf.csrf import CSRFProtect
-from PIL import Image, ImageOps                      # NUEVO
+from PIL import Image, ImageOps                    # NUEVO
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 from xhtml2pdf import pisa
@@ -63,24 +63,24 @@ CREATE TABLE IF NOT EXISTS usuarios (
 );
 
 CREATE TABLE IF NOT EXISTS auditorias (
-    id                       INTEGER PRIMARY KEY AUTOINCREMENT,
-    seccion_id               TEXT    NOT NULL,
-    titulo                   TEXT    NOT NULL,
-    fecha                    TEXT    NOT NULL,
-    usuario_id               INTEGER NOT NULL REFERENCES usuarios(id),
-    usuario_nombre           TEXT    NOT NULL DEFAULT '',
-    supervisor_obra          TEXT    NOT NULL DEFAULT '',
-    actividad                TEXT    NOT NULL DEFAULT '',
-    participantes_auditados  TEXT    NOT NULL DEFAULT '',
-    direccion                TEXT    NOT NULL DEFAULT '',
-    proyecto                 TEXT    NOT NULL DEFAULT '',
-    numero_equipo            TEXT    NOT NULL DEFAULT '',
-    auditor_aclaracion       TEXT    NOT NULL DEFAULT '',
-    auditor_firma            TEXT    NOT NULL DEFAULT '',
-    auditado_nombre          TEXT    NOT NULL DEFAULT '',
-    auditado_documento       TEXT    NOT NULL DEFAULT '',
-    auditado_puesto          TEXT    NOT NULL DEFAULT '',
-    auditado_firma           TEXT    NOT NULL DEFAULT ''
+    id                         INTEGER PRIMARY KEY AUTOINCREMENT,
+    seccion_id                 TEXT    NOT NULL,
+    titulo                     TEXT    NOT NULL,
+    fecha                      TEXT    NOT NULL,
+    usuario_id                 INTEGER NOT NULL REFERENCES usuarios(id),
+    usuario_nombre             TEXT    NOT NULL DEFAULT '',
+    supervisor_obra            TEXT    NOT NULL DEFAULT '',
+    actividad                  TEXT    NOT NULL DEFAULT '',
+    participantes_auditados    TEXT    NOT NULL DEFAULT '',
+    direccion                  TEXT    NOT NULL DEFAULT '',
+    proyecto                   TEXT    NOT NULL DEFAULT '',
+    numero_equipo              TEXT    NOT NULL DEFAULT '',
+    auditor_aclaracion         TEXT    NOT NULL DEFAULT '',
+    auditor_firma              TEXT    NOT NULL DEFAULT '',
+    auditado_nombre            TEXT    NOT NULL DEFAULT '',
+    auditado_documento         TEXT    NOT NULL DEFAULT '',
+    auditado_puesto            TEXT    NOT NULL DEFAULT '',
+    auditado_firma             TEXT    NOT NULL DEFAULT ''
 );
 
 CREATE TABLE IF NOT EXISTS auditoria_respuestas (
@@ -193,6 +193,7 @@ def logout():
     session.clear()
     flash("Has cerrado sesión correctamente.", "info")
     return redirect(url_for("login"))
+
 # ============================ Foto de perfil (NUEVO) ============================
 def _avatar_path(user_id):
     return os.path.join(AVATARS, f"{user_id}.jpg")
@@ -248,7 +249,7 @@ def subir_foto_perfil():
 
     try:
         img = Image.open(archivo)
-        img = ImageOps.exif_transpose(img)           # respeta la rotación de fotos de celular
+        img = ImageOps.exif_transpose(img)          # respeta la rotación de fotos de celular
         img = img.convert("RGB")
         img = ImageOps.fit(img, (AVATAR_SIZE, AVATAR_SIZE), Image.LANCZOS)  # cuadrado centrado
         img.save(_avatar_path(session["user_id"]), "JPEG", quality=85, optimize=True)
@@ -354,6 +355,8 @@ def mis_auditorias():
     ).fetchall()
         
     return render_template("mis_auditorias.html", auditorias=auditorias)
+
+
 # ========================== Panel de Administración ==========================
 @app.route("/admin")
 @rol_required(ROL_ADMIN)
@@ -490,6 +493,44 @@ def descargar_pdf(audit_id):
 
 
 # ============================ Gestión de usuarios ============================
+@app.route("/admin/usuarios/<int:user_id>/editar", methods=["GET", "POST"])
+@rol_required(ROL_ADMIN)
+def editar_usuario(user_id):
+    db = get_db()
+    usuario = db.execute(
+        "SELECT id, email, nombre, rol, activo FROM usuarios WHERE id = ?", (user_id,)
+    ).fetchone()
+    
+    if usuario is None:
+        abort(404)
+
+    if request.method == "POST":
+        nuevo_email = request.form.get("email", "").strip().lower()
+        nuevo_nombre = request.form.get("nombre", "").strip()
+        nuevo_rol = request.form.get("rol", ROL_SUPERVISOR)
+
+        if not nuevo_email or nuevo_rol not in ROLES:
+            flash("El correo y el rol son obligatorios.", "error")
+            return redirect(url_for("editar_usuario", user_id=user_id))
+
+        if usuario["id"] == session["user_id"] and nuevo_rol != ROL_ADMIN:
+            flash("No puedes quitarte el rol de administrador a ti mismo.", "error")
+            return redirect(url_for("editar_usuario", user_id=user_id))
+
+        try:
+            db.execute(
+                "UPDATE usuarios SET email = ?, nombre = ?, rol = ? WHERE id = ?",
+                (nuevo_email, nuevo_nombre, nuevo_rol, user_id)
+            )
+            db.commit()
+            flash(f"Usuario {nuevo_email} actualizado correctamente.", "ok")
+            return redirect(url_for("admin_panel"))
+        except sqlite3.IntegrityError:
+            flash("Ya existe otro usuario con ese correo.", "error")
+
+    return render_template("editar_usuario.html", usuario=usuario)
+
+
 @app.post("/admin/usuarios/<int:user_id>/rol")
 @rol_required(ROL_ADMIN)
 def cambiar_rol_web(user_id):
