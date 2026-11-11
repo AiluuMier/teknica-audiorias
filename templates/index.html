@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+
 {% block right %}
   <div class="d-flex align-items-center gap-3">
 
-    <!-- Botón de instalación SIEMPRE visible -->
+    <!-- Botón de instalación bien ubicado en la barra superior -->
     <button id="btnInstalar" class="btn btn-sm btn-success">
       📥 Instalar App
     </button>
@@ -22,30 +23,110 @@
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <button type="submit" class="btn btn-sm btn-outline-danger">Cerrar sesión</button>
     </form>
- </div>
-    {% include '_avatar.html' %}
+  </div>
+  {% include '_avatar.html' %}
 
-<!-- Script para que el botón active la instalación al hacerle clic -->
-<script>
-  let deferredPrompt;
+  <!-- Script del botón de instalación -->
+  <script>
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+    });
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-      // Guardamos el evento para cuando el usuario haga clic
-      e.preventDefault();
-      deferredPrompt = e;
-  });
+    document.getElementById('btnInstalar').addEventListener('click', () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                deferredPrompt = null;
+            });
+        } else {
+            alert("La aplicación ya está instalada en este dispositivo o tu navegador la abrió en modo aplicación.");
+        }
+    });
+  </script>
+{% endblock %}
 
-  document.getElementById('btnInstalar').addEventListener('click', () => {
-      if (deferredPrompt) {
-          // Si el navegador tiene lista la instalación, la lanza
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.then((choiceResult) => {
-              deferredPrompt = null;
-          });
-      } else {
-          // Si ya está instalada o el navegador no lo permite por estar en otra vista
-          alert("La aplicación ya está instalada en este dispositivo o tu navegador la abrió en modo aplicación.");
-      }
-  });
-</script>
+{% block content %}
+<p class="small fw-bold text-uppercase text-primary mb-2">Auditoría de seguridad</p>
+<h1 class="display-5 fw-bolder text-navy">Selecciona una sección para comenzar</h1>
+<p class="text-secondary col-lg-7">Completa cada revisión, registra observaciones y mantén el control de las condiciones de trabajo.</p>
+<p class="fw-bold mt-4 mb-4">{{ secciones|length }} controles disponibles</p>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+  {% for s in secciones %}
+  <div class="col">
+    <div class="card h-100 card-hover position-relative">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-end mb-4">
+          <span class="small fw-bold text-secondary">0{{ loop.index }}</span>
+        </div>
+        <h2 class="h5 fw-bold text-navy">{{ s.title }}</h2>
+        <p class="text-secondary small">{{ s.description }}</p>
+        
+        {% if s.questions %}
+          <a class="fw-bold small text-primary text-decoration-none stretched-link" href="{{ url_for('formulario', seccion_id=s.id) }}">Abrir formulario →</a>
+        {% else %}
+          {% if session.get('rol') == 'admin' %}
+            <a class="fw-bold small text-primary text-decoration-none stretched-link" href="{{ url_for('editar_seccion', seccion_id=s.id) }}">+ Agregar formulario →</a>
+          {% else %}
+            <span class="text-muted small">Sin preguntas cargadas aún.</span>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      <!-- El pie con botones de edición y eliminación solo para admin -->
+      {% if session.get('rol') == 'admin' %}
+      <div class="card-footer bg-white d-flex gap-2 position-relative z-2">
+        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('editar_seccion', seccion_id=s.id) }}"> Editar preguntas</a>
+        <form method="post" action="{{ url_for('eliminar_seccion', seccion_id=s.id) }}" onsubmit="return confirm('¿Eliminar esta sección con todas sus preguntas? No se puede deshacer.')">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+
+  <!-- Botón para agregar nueva sección solo para administradores -->
+  {% if session.get('rol') == 'admin' %}
+  <div class="col">
+    <button type="button" class="card h-100 w-100 card-add card-hover" data-bs-toggle="modal" data-bs-target="#modal">
+      <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center text-center">
+        <div class="plus mb-3">+</div>
+        <h2 class="h5 fw-bold text-navy">Agregar nueva sección</h2>
+        <p class="text-secondary small mb-0">Creá la sección y después agregale las preguntas.</p>
+      </div>
+    </button>
+  </div>
+  {% endif %}
+</div>
+
+{% if session.get('rol') == 'admin' %}
+<div class="modal fade" id="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" method="post" action="{{ url_for('nueva_seccion') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <div class="modal-header">
+        <div>
+          <p class="small fw-bold text-uppercase text-primary mb-1">Nuevo control</p>
+          <h2 class="modal-title h4 fw-bold text-navy">Agregar sección</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <label for="t" class="form-label fw-bold">Nombre de la sección</label>
+        <input id="t" name="title" class="form-control mb-3" required placeholder="Ej. Trabajo en altura">
+        <label for="d" class="form-label fw-bold">Descripción</label>
+        <textarea id="d" name="description" class="form-control" rows="3" placeholder="Indica qué se verificará en este control."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Crear sección</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}
 {% endblock %}
