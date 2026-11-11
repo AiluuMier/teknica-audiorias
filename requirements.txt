@@ -3,3 +3,4 @@ Flask-WTF>=1.2
 gunicorn
 Pillow
 xhtml2pdf
+Flask-Mail
