@@ -89,9 +89,14 @@
           <div class="fs-5 fw-bold text-navy">Auditoría</div>
         </div>
       </div>
-
-      <!-- BLOQUE DERECHA: Pegado al extremo derecho -->
+      
+      <!-- BLOQUE DERECHA: Botón de instalación, botones de sesión y foto de perfil alineados -->
       <div class="d-flex align-items-center gap-2">
+        <!-- Botón de instalación (Oculto por defecto, se muestra solo en web y si el navegador lo permite) -->
+        <button id="install-btn" style="display: none;" class="btn btn-sm btn-success">
+          📥 Instalar App
+        </button>
+
         <!-- El botón Panel Admin solo aparece si es admin Y NO está actualmente en el panel de administración -->
         {% if session.get('rol') == 'admin' and request.endpoint != 'admin_panel' %}
           <a href="{{ url_for('admin_panel') }}" class="btn btn-outline-primary btn-sm">Panel Admin</a>
@@ -113,12 +118,6 @@
           {% endif %}
         </a>
       </div>
-    </div>
-
-    <div class="text-center pb-2">
-      <button id="install-btn" style="display: none;" class="btn btn-sm btn-primary">
-        📥 Instalar Aplicación TKE
-      </button>
     </div>
   </header>
 
@@ -153,27 +152,35 @@
     document.addEventListener('DOMContentLoaded', autoCerrarAlertas);
 
     let deferredPrompt;
+    const installBtn = document.getElementById('install-btn');
 
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        const installBtn = document.getElementById('install-btn');
-        if (installBtn) {
-            installBtn.style.display = 'block';
-        }
-    });
+    // Comprobar si la página se está ejecutando dentro de la app ya instalada (modo standalone)
+    const esAppInstalada = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
-    const installBtnEl = document.getElementById('install-btn');
-    if (installBtnEl) {
-        installBtnEl.addEventListener('click', async () => {
-            if (!deferredPrompt) return;
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                console.log('El usuario aceptó instalar la PWA');
+    // Gestionar el evento beforeinstallprompt solo si NO es la app instalada
+    if (!esAppInstalada) {
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (installBtn) {
+                installBtn.style.display = 'inline-block';
             }
-            deferredPrompt = null;
-            document.getElementById('install-btn').style.display = 'none';
+        });
+    }
+
+    if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('El usuario aceptó instalar la PWA');
+                }
+                deferredPrompt = null;
+                installBtn.style.display = 'none';
+            } else {
+                alert("Para instalar la aplicación, utiliza la opción correspondiente en el menú de tu navegador.");
+            }
         });
     }
   </script>
