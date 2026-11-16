@@ -27,8 +27,9 @@
 
     /* Ajustes específicos para pantallas de celular */
     @media (max-width: 767.98px) {
-      .logo-header { height: 30px !important; }
-      .titulo-header { font-size: 1.05rem !important; }
+      .logo-header { height: 22px !important; }
+      .titulo-header { font-size: 0.95rem !important; }
+      .avatar { width: 32px !important; height: 32px !important; font-size: 12px !important; }
       /* Evita que iOS/Android hagan zoom automático al tocar inputs */
       input, select, textarea { font-size: 16px !important; }
     }
@@ -84,24 +85,24 @@
     </div>
   </div>
 
-  <!-- NAVBAR RESPONSIVA: Se adapta a celular con menú desplegable -->
+  <!-- NAVBAR RESPONSIVA: Todo alineado en una sola fila en celular -->
   <nav class="navbar navbar-expand-md bg-white border-bottom sticky-top py-2 py-md-3">
-    <div class="container-fluid px-3 px-md-4">
+    <div class="container-fluid px-2 px-md-4 d-flex align-items-center justify-content-between flex-nowrap">
       
-      <!-- Lado izquierdo: Botón atrás (si existe) + Logo + Título -->
-      <div class="d-flex align-items-center gap-2">
+      <!-- Lado izquierdo: Botón atrás + Logo + Título -->
+      <div class="d-flex align-items-center gap-1 gap-md-2 overflow-hidden" style="min-width: 0;">
         {% block back %}{% endblock %}
         <img src="{{ url_for('static', filename='img/logoteknica.svg') }}"
-             alt="Logo TKE" class="logo-header" style="height: 38px; width: auto; object-fit: contain;">
-        <div class="lh-sm">
+             alt="Logo TKE" class="logo-header flex-shrink-0" style="height: 38px; width: auto; object-fit: contain;">
+        <div class="lh-sm text-truncate">
           <div class="small text-uppercase fw-bold text-secondary d-none d-sm-block"
                style="font-size: 0.65rem; letter-spacing: .5px;">Control operativo</div>
-          <div class="fs-5 fw-bold text-navy titulo-header">Auditoría</div>
+          <div class="fs-5 fw-bold text-navy titulo-header text-truncate">Auditoría</div>
         </div>
       </div>
 
-      <!-- Controles visibles en celular: Avatar + Botón Hamburguesa -->
-      <div class="d-flex align-items-center gap-2 d-md-none">
+      <!-- Controles visibles en celular: Avatar + Botón Hamburguesa pegados a la derecha -->
+      <div class="d-flex align-items-center gap-1 d-md-none flex-shrink-0 ms-2">
         <a href="#" data-bs-toggle="modal" data-bs-target="#modalCambiarFoto" class="text-decoration-none" title="Cambiar foto de perfil">
           {% if avatar_url %}
             <img src="{{ avatar_url }}" alt="Perfil" class="rounded-circle avatar">
@@ -109,14 +110,14 @@
             <div class="avatar">TKE</div>
           {% endif %}
         </a>
-        <button class="navbar-toggler border-0 shadow-none px-2" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" aria-label="Abrir menú">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler border-0 shadow-none p-1" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon" style="width: 1.3em; height: 1.3em;"></span>
         </button>
       </div>
 
       <!-- Menú colapsable en celular / Fila normal en PC -->
-      <div class="collapse navbar-collapse justify-content-end mt-3 mt-md-0" id="menuNavegacion">
-        <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-2">
+      <div class="collapse navbar-collapse justify-content-end" id="menuNavegacion">
+        <div class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center gap-2 pt-3 pt-md-0">
           
           <!-- Botón de instalación -->
           <button id="install-btn" style="display: none;" class="btn btn-sm btn-success">
@@ -133,7 +134,7 @@
           
           <a href="{{ url_for('logout') }}" class="btn btn-danger btn-sm">Cerrar Sesión</a>
 
-          <!-- Avatar visible solo en PC (en celular ya aparece arriba al lado de la hamburguesa) -->
+          <!-- Avatar visible solo en PC -->
           <a href="#" data-bs-toggle="modal" data-bs-target="#modalCambiarFoto" class="text-decoration-none d-none d-md-block ms-1" title="Cambiar foto de perfil">
             {% if avatar_url %}
               <img src="{{ avatar_url }}" alt="Perfil" class="rounded-circle avatar">
