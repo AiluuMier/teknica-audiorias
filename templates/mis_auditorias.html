@@ -216,10 +216,7 @@
             </div>
         </div>
         <nav>
-            <form action="{{ url_for('logout') }}" method="post" style="margin:0">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <button type="submit" class="btn-salir">Cerrar sesión</button>
-            </form>
+
             <div>{% include '_avatar.html' %}</div>
         </nav>
     </header>
