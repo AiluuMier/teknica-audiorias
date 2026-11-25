@@ -23,39 +23,70 @@
             color: #1c2733;
         }
 
-        /* ---------- Encabezado ---------- */
+        /* ---------- Encabezado en una sola fila ---------- */
         .topbar {
             background: #fff;
             border-bottom: 1px solid var(--borde);
-            padding: 14px 40px;
+            padding: 14px 32px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 12px;
         }
-        .brand { display: flex; align-items: center; gap: 16px; }
-        .brand img { height: 44px; }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+        .brand img {
+            height: 38px;
+            width: auto;
+            flex-shrink: 0;
+        }
+        .brand-text {
+            min-width: 0;
+        }
         .brand-text small {
             display: block;
             font-size: 11px;
             letter-spacing: .08em;
             color: var(--texto-suave);
             font-weight: 600;
+            white-space: nowrap;
         }
-        .brand-text strong { font-size: 22px; color: var(--azul-oscuro); }
-        .topbar nav { display: flex; align-items: center; gap: 16px; }
+        .brand-text strong {
+            display: block;
+            font-size: 20px;
+            color: var(--azul-oscuro);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .topbar nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
         .topbar nav a.link { color: var(--azul); }
         .btn-salir {
             border: 1px solid var(--rojo);
             background: none;
             color: var(--rojo);
-            padding: 8px 14px;
+            padding: 7px 14px;
             border-radius: 6px;
             text-decoration: none;
             font-size: 14px;
             font-family: inherit;
             cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-salir:hover {
+            background: var(--rojo);
+            color: #fff;
         }
         
         /* Ocultar la flechita por defecto del dropdown de Bootstrap si se desea */
@@ -77,7 +108,7 @@
             color: var(--azul-oscuro);
         }
         .subtitulo { color: var(--texto-suave); font-size: 17px; margin: 0 0 28px; }
-        .acciones-top { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+        .acciones-top { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
         .contador { font-weight: 700; }
 
         .btn-nuevo {
@@ -88,6 +119,7 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
+            white-space: nowrap;
         }
 
         /* ---------- Tabla dentro de tarjeta ---------- */
@@ -95,7 +127,7 @@
             background: #fff;
             border: 1px solid var(--borde);
             border-radius: 10px;
-            overflow: hidden;
+            overflow-x: auto;
         }
         table { width: 100%; border-collapse: collapse; }
         th {
@@ -127,8 +159,14 @@
         .vacio { text-align: center; color: var(--texto-suave); }
         .volver { display: inline-block; margin-top: 24px; color: var(--azul); text-decoration: none; font-weight: 600; }
 
-        @media (max-width: 600px) {
-            .topbar { padding: 12px 16px; }
+        @media (max-width: 768px) {
+            .topbar { padding: 10px 14px; gap: 8px; }
+            .brand { gap: 8px; }
+            .brand img { height: 26px; }
+            .brand-text small { display: none; }
+            .brand-text strong { font-size: 16px; }
+            .topbar nav { gap: 8px; }
+            .btn-salir { padding: 5px 10px; font-size: 12px; }
             h1 { font-size: 32px; }
             th, td { padding: 12px; }
         }
@@ -196,7 +234,7 @@
         <a class="volver" href="{{ url_for('inicio') }}">← Volver al inicio</a>
     </main>
 
-    <!-- Modal para cambiar/subir la foto de perfil (Ubicado correctamente al final para evitar bloqueos visuales) -->
+    <!-- Modal para cambiar/subir la foto de perfil -->
     <div class="modal fade" id="modalCambiarFoto" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

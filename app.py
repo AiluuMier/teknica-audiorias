@@ -844,7 +844,6 @@ Por favor, revise el sistema para tomar las acciones correctivas correspondiente
         f"❌ ERROR CRÍTICO AL ENVIAR CORREO: {type(e).__name__} - {str(e)}"
     )
 
-
 # ============================== Formulario ==============================
 @app.route("/seccion/<seccion_id>", methods=["GET", "POST"])
 @rol_required(ROL_ADMIN, ROL_SUPERVISOR)
@@ -863,7 +862,7 @@ def formulario(seccion_id):
 
   if request.method == "POST":
     respuestas = []
-    respuestas_no_deseadas = []  # NUEVO: Para recolectar las preguntas con "no"
+    respuestas_no_deseadas = []
 
     for q in preguntas_de(seccion):
       valor = request.form.get(q["id"])
@@ -873,7 +872,6 @@ def formulario(seccion_id):
             "formulario.html", seccion=seccion, form=request.form, guardado=False
         )
 
-      # NUEVO: Detectar si la respuesta es "no"
       if valor == "no":
         respuestas_no_deseadas.append(q["text"])
 
@@ -955,7 +953,6 @@ def formulario(seccion_id):
     )
     db.commit()
 
-    # LLAMADA EN SEGUNDO PLANO
     if respuestas_no_deseadas:
       identificador_equipo = numero_equipo or proyecto or seccion["title"]
       enviar_alerta_en_segundo_plano(identificador_equipo, respuestas_no_deseadas)
@@ -963,6 +960,8 @@ def formulario(seccion_id):
     return render_template(
         "formulario.html", seccion=seccion, form={}, guardado=True
     )
+
+  return render_template("formulario.html", seccion=seccion, form={}, guardado=False)
 
  
 import smtplib
