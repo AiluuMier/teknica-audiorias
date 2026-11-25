@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mis Auditorías</title>
-    <!-- Incluimos Bootstrap CSS para que funcionen los dropdowns y modales de manera fluida -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
             --fondo: #f4f6f1;
             --azul-oscuro: #123a68;
             --azul: #1668e3;
+            --verde: #198754;
             --texto-suave: #6b7580;
             --borde: #dde1e6;
             --rojo: #b84048;
@@ -34,20 +34,9 @@
             flex-wrap: nowrap;
             gap: 12px;
         }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 0;
-        }
-        .brand img {
-            height: 38px;
-            width: auto;
-            flex-shrink: 0;
-        }
-        .brand-text {
-            min-width: 0;
-        }
+        .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .brand img { height: 38px; width: auto; flex-shrink: 0; }
+        .brand-text { min-width: 0; }
         .brand-text small {
             display: block;
             font-size: 11px;
@@ -71,7 +60,6 @@
             flex-shrink: 0;
             margin-left: auto;
         }
-        .topbar nav a.link { color: var(--azul); }
         .btn-salir {
             border: 1px solid var(--rojo);
             background: none;
@@ -84,16 +72,11 @@
             cursor: pointer;
             white-space: nowrap;
         }
-        .btn-salir:hover {
-            background: var(--rojo);
-            color: #fff;
-        }
-        
-        /* Ocultar la flechita por defecto del dropdown de Bootstrap si se desea */
+        .btn-salir:hover { background: var(--rojo); color: #fff; }
         .dropdown-toggle.hide-arrow::after { display: none; }
 
         /* ---------- Contenido ---------- */
-        main { max-width: 1000px; margin: 0 auto; padding: 40px 24px 60px; }
+        main { max-width: 1000px; margin: 0 auto; padding: 36px 24px 60px; }
         .eyebrow {
             color: var(--azul);
             font-weight: 600;
@@ -102,14 +85,60 @@
             text-transform: uppercase;
         }
         h1 {
-            margin: 8px 0 12px;
-            font-size: 44px;
+            margin: 8px 0 10px;
+            font-size: 40px;
             line-height: 1.1;
             color: var(--azul-oscuro);
         }
-        .subtitulo { color: var(--texto-suave); font-size: 17px; margin: 0 0 28px; }
-        .acciones-top { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
-        .contador { font-weight: 700; }
+        .subtitulo { color: var(--texto-suave); font-size: 16px; margin: 0 0 24px; }
+
+        /* ---------- Panel de Estadísticas ---------- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .stat-box {
+            background: #fff;
+            border: 1px solid var(--borde);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--texto-suave);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .stat-value {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--azul-oscuro);
+            line-height: 1.1;
+        }
+        .stat-sub {
+            font-size: 13px;
+            color: var(--texto-suave);
+            margin-top: 8px;
+        }
+        .badge-meta {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .badge-ok { background: #d1e7dd; color: #0f5132; }
+        .badge-pendiente { background: #fff3cd; color: #664d03; }
+
+        .acciones-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+        .contador { font-weight: 700; color: var(--azul-oscuro); }
 
         .btn-nuevo {
             background: var(--azul);
@@ -121,6 +150,7 @@
             font-size: 14px;
             white-space: nowrap;
         }
+        .btn-nuevo:hover { opacity: .92; color: #fff; }
 
         /* ---------- Tabla dentro de tarjeta ---------- */
         .card {
@@ -167,9 +197,13 @@
             .brand-text strong { font-size: 16px; }
             .topbar nav { gap: 8px; }
             .btn-salir { padding: 5px 10px; font-size: 12px; }
-            h1 { font-size: 32px; }
+            h1 { font-size: 30px; }
+            .stats-grid { grid-template-columns: 1fr; }
             th, td { padding: 12px; }
         }
+        .bg-progreso-azul { background-color: #1668e3; }
+        .texto-cumplido { color: #198754; }
+        .texto-pendiente { color: #123a68; }
     </style>
 </head>
 <body>
@@ -186,7 +220,6 @@
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <button type="submit" class="btn-salir">Cerrar sesión</button>
             </form>
-            <!-- Aquí se incluye el avatar con su menú desplegable correctamente -->
             <div>{% include '_avatar.html' %}</div>
         </nav>
     </header>
@@ -194,10 +227,57 @@
     <main>
         <div class="eyebrow">Panel de supervisor</div>
         <h1>Mis auditorías</h1>
-        <p class="subtitulo">Consulta, revisa y descarga el PDF de las auditorías que realizaste.</p>
+        <p class="subtitulo">Consulta tu avance mensual, revisa tus controles y descarga los PDF.</p>
+
+        <!-- Tarjetas de Estadísticas y Meta Mensual -->
+        <section class="stats-grid">
+            <div class="stat-box">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="stat-label mb-0">Meta mensual ({{ stats.mes_actual }})</span>
+                    {% if stats.meta_cumplida %}
+                        <span class="badge-meta badge-ok">¡Meta cumplida!</span>
+                    {% else %}
+                        <span class="badge-meta badge-pendiente">En progreso</span>
+                    {% endif %}
+                </div>
+                <div class="d-flex align-items-baseline gap-2">
+                    <span class="stat-value">{{ stats.realizadas_mes }} / {{ stats.meta_mensual }}</span>
+      <div class="progress mt-3" style="height: 10px; border-radius: 99px; background: #e9ecef;">
+                    <div class="progress-bar {{ 'bg-success' if stats.meta_cumplida else 'bg-progreso-azul' }}"
+                         role="progressbar"
+                         data-width="{{ stats.porcentaje }}">
+                    </div>
+                </div>
+                <div class="stat-sub">
+                    {% if stats.meta_cumplida %}
+                        Completaste el objetivo mínimo del mes ({{ stats.porcentaje }}%).
+                    {% else %}
+                        Te faltan <strong>{{ stats.faltantes }}</strong> {{ 'auditoría' if stats.faltantes == 1 else 'auditorías' }} para llegar a la meta ({{ stats.porcentaje }}%).
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <span class="stat-label">Pendientes del mes</span>
+                <div class="stat-value {{ 'texto-cumplido' if stats.faltantes == 0 else 'texto-pendiente' }}">
+                    {{ stats.faltantes }}
+                </div>
+                <div class="stat-sub">Para alcanzar el mínimo de {{ stats.meta_mensual }} mensuales</div>
+            </div>      <div class="stat-value {{ 'texto-cumplido' if stats.faltantes == 0 else 'texto-pendiente' }}">
+                    {{ stats.faltantes }}
+                </div>
+                <div class="stat-sub">Para alcanzar el mínimo de {{ stats.meta_mensual }} mensuales</div>
+            </div>
+
+            <div class="stat-box">
+                <span class="stat-label">Total histórico</span>
+                <div class="stat-value">{{ stats.total_historico }}</div>
+                <div class="stat-sub">Auditorías registradas en total</div>
+            </div>
+        </section>
 
         <div class="acciones-top">
-            <span class="contador">{{ auditorias|length }} auditorías registradas</span>
+            <span class="contador">Historial de auditorías ({{ auditorias|length }})</span>
             <a href="{{ url_for('inicio') }}" class="btn-nuevo">+ Realizar nueva auditoría</a>
         </div>
 
@@ -271,7 +351,12 @@
       </div>
     </div>
 
-    <!-- Script de Bootstrap necesario para desplegar el menú y abrir el modal -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+      document.querySelectorAll('.progress-bar[data-width]').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    </script>
+
 </body>
 </html>

@@ -393,7 +393,6 @@ def buscar_seccion(seccion_id):
 def inicio():
   return render_template("index.html", secciones=todas_las_secciones())
 
-
 # ========================== Panel del Supervisor ==========================
 @app.route("/mis-auditorias")
 @rol_required(ROL_SUPERVISOR)
@@ -401,14 +400,36 @@ def mis_auditorias():
   db = get_db()
   usuario_id = session["user_id"]
 
-  # Solo los supervisores ven sus propias auditorías
   auditorias = db.execute(
       "SELECT * FROM auditorias WHERE usuario_id = ? ORDER BY id DESC",
       (usuario_id,),
   ).fetchall()
 
-  return render_template("mis_auditorias.html", auditorias=auditorias)
+  meta_mensual = 4
+  mes_actual = time.strftime("%Y-%m")
 
+  # Contar cuántas auditorías hizo en el mes actual (YYYY-MM)
+  realizadas_mes = sum(
+      1 for a in auditorias if (a["fecha"] or "").startswith(mes_actual)
+  )
+  faltantes = max(0, meta_mensual - realizadas_mes)
+  porcentaje = min(100, int((realizadas_mes / meta_mensual) * 100))
+
+  estadisticas = {
+      "mes_actual": mes_actual,
+      "realizadas_mes": realizadas_mes,
+      "meta_mensual": meta_mensual,
+      "faltantes": faltantes,
+      "porcentaje": porcentaje,
+      "total_historico": len(auditorias),
+      "meta_cumplida": realizadas_mes >= meta_mensual,
+  }
+
+  return render_template(
+      "mis_auditorias.html",
+      auditorias=auditorias,
+      stats=estadisticas,
+  )
 
 # ========================== Panel de Administración ==========================
 @app.route("/admin")
