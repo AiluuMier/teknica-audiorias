@@ -9,7 +9,6 @@
   <a href="{{ url_for('inicio') }}" class="btn btn-outline-secondary">← Volver al inicio</a>
 </div>
 
-
 <div class="row g-3 mb-4">
   <div class="col-md-4">
     <div class="card p-3 border-0 shadow-sm">
@@ -31,6 +30,25 @@
   </div>
 </div>
 
+{% if incumplidores %}
+<div class="alert alert-danger border-danger mb-4" role="alert">
+  <h6 class="alert-heading fw-bold mb-1">
+    {% if mes_cerrado %}
+      Alerta de cierre ({{ mes }}): Supervisores que no completaron la meta de 4 auditorías
+    {% else %}
+      Alerta de fin de mes ({{ mes }}): Supervisores por debajo de la meta de 4 auditorías
+    {% endif %}
+  </h6>
+  <ul class="mb-0 small">
+    {% for inc in incumplidores %}
+      <li>
+        <strong>{{ inc.nombre }}</strong> ({{ inc.email }}): realizó
+        <strong>{{ inc.realizadas }}/4</strong> — le faltaron <strong>{{ inc.faltantes }}</strong>.
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
 
 <div class="card border-0 shadow-sm p-4 mb-4">
   <h2 class="h5 fw-bold text-navy mb-3">Crear usuario</h2>
@@ -112,7 +130,6 @@
   </div>
 </div>
 
-
 <div class="card border-0 shadow-sm p-4 mb-4">
   <h2 class="h5 fw-bold text-navy mb-3">Auditorías realizadas</h2>
 
@@ -146,44 +163,44 @@
           <th>Supervisor</th>
           <th>Sección</th>
           <th>Respuestas "No"</th>
-          <th></th>
+          <th class="text-end">Acciones</th>
         </tr>
       </thead>
       <tbody>
         {% for a in auditorias_mes %}
+          {% set realizadas_sup = conteo_mes.get(a.usuario_id, 0) %}
+          {% set color_btn = 'btn-outline-danger' if realizadas_sup < 3 else 'btn-outline-success' %}
           <tr>
             <td>{{ a.fecha }}</td>
             <td>{{ a.supervisor }}</td>
             <td>{{ a.titulo }}</td>
             <td>{{ a.cant_no }} de {{ a.total }}</td>
             <td class="text-end">
-              <a href="{{ url_for('ver_auditoria', audit_id=a.id) }}" class="btn btn-sm btn-outline-primary">Ver auditoría</a>
+              <div class="d-inline-flex flex-wrap gap-1 justify-content-end">
+                <a href="{{ url_for('ver_auditoria', audit_id=a.id) }}" class="btn btn-sm btn-outline-primary">
+                  Ver auditoría
+                </a>
+                <button type="button"
+                        class="btn btn-sm {{ color_btn }} btn-ver-estadisticas"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalEstadisticasUsuario"
+                        data-usuario-id="{{ a.usuario_id }}"
+                        data-nombre="{{ a.supervisor }}"
+                        data-mes="{{ mes }}">
+                  Ver estadísticas
+                </button>
+              </div>
             </td>
           </tr>
         {% else %}
           <tr><td colspan="5" class="text-secondary">Sin auditorías este mes.</td></tr>
         {% endfor %}
-      </tbody>{% if incumplidores %}
-<div class="alert alert-danger border-danger mb-4" role="alert">
-  <h6 class="alert-heading fw-bold mb-1">
-    {% if mes_cerrado %}
-      Alerta de cierre ({{ mes }}): Supervisores que no completaron la meta de 4 auditorías
-    {% else %}
-      Alerta de fin de mes ({{ mes }}): Supervisores por debajo de la meta de 4 auditorías
-    {% endif %}
-  </h6>
-  <ul class="mb-0 small">
-    {% for inc in incumplidores %}
-      <li>
-        <strong>{{ inc.nombre }}</strong> ({{ inc.email }}): realizó
-        <strong>{{ inc.realizadas }}/4</strong> — le faltaron <strong>{{ inc.faltantes }}</strong>.
-      </li>
-    {% endfor %}
-  </ul>
+      </tbody>
+    </table>
+  </div>
 </div>
-{% endif %}
 
-<div class="card mb-4">
+<div class="card border-0 shadow-sm mb-4">
   <div class="card-header bg-white fw-bold text-navy">
     Estadísticas por supervisor — Mes {{ mes }} (Meta: 4)
   </div>
@@ -210,7 +227,8 @@
           <td style="min-width: 140px;">
             <div class="progress" style="height: 8px;">
               <div class="progress-bar {{ 'bg-success' if s.cumplio else 'bg-primary' }}"
-                   style="width: {{ s.porcentaje }}%;"></div>
+                   role="progressbar"
+                   data-width="{{ s.porcentaje }}"></div>
             </div>
             <small class="text-muted">{{ s.porcentaje }}%</small>
           </td>
@@ -234,14 +252,116 @@
     </table>
   </div>
 </div>
-    </table>
+
+<!-- Modal de Estadísticas del Usuario -->
+<div class="modal fade" id="modalEstadisticasUsuario" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title fw-bold text-navy mb-0" id="estTituloUsuario">Estadísticas del supervisor</h5>
+          <small class="text-muted" id="estSubtituloMes"></small>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body" id="estCuerpo">
+        <p class="text-muted mb-0">Cargando estadísticas...</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
   </div>
 </div>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".progress-bar[data-width]").forEach(function (bar) {
-      bar.style.width = bar.dataset.width + "%";
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".progress-bar[data-width]").forEach(function (bar) {
+    bar.style.width = bar.dataset.width + "%";
   });
+
+  const modalEl = document.getElementById("modalEstadisticasUsuario");
+  if (!modalEl) return;
+
+  modalEl.addEventListener("show.bs.modal", function (event) {
+    const btn = event.relatedTarget;
+    if (!btn) return;
+
+    const usuarioId = btn.dataset.usuarioId;
+    const nombre = btn.dataset.nombre || "Supervisor";
+    const mes = btn.dataset.mes || "";
+
+    document.getElementById("estTituloUsuario").textContent = nombre;
+    document.getElementById("estSubtituloMes").textContent = "Período evaluado: " + mes;
+    const cuerpo = document.getElementById("estCuerpo");
+    cuerpo.innerHTML = '<p class="text-muted mb-0">Cargando estadísticas...</p>';
+
+    fetch(`/admin/estadisticas-usuario/${usuarioId}?mes=${encodeURIComponent(mes)}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          cuerpo.innerHTML = `<div class="alert alert-danger mb-0">${data.error}</div>`;
+          return;
+        }
+
+        const estadoBadge = data.cumplio_meta
+          ? '<span class="badge bg-success">Meta de 4 cumplida</span>'
+          : (data.realizadas_mes < 3
+              ? '<span class="badge bg-danger">Menos de 3 auditorías</span>'
+              : '<span class="badge bg-success">3 o más auditorías</span>');
+
+        const barColor = data.realizadas_mes < 3 ? "bg-danger" : "bg-success";
+
+        cuerpo.innerHTML = `
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="small text-muted">${data.email || ""}</span>
+            ${estadoBadge}
+          </div>
+          <div class="row g-2 mb-3 text-center">
+            <div class="col-4">
+              <div class="border rounded p-2">
+                <div class="small text-muted">En el mes</div>
+                <div class="fs-5 fw-bold">${data.realizadas_mes} / ${data.meta_mensual}</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="border rounded p-2">
+                <div class="small text-muted">Faltan (meta 4)</div>
+                <div class="fs-5 fw-bold">${data.faltantes_meta}</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="border rounded p-2">
+                <div class="small text-muted">Histórico</div>
+                <div class="fs-5 fw-bold">${data.total_historico}</div>
+              </div>
+            </div>
+          </div>
+          <div class="progress mb-2" style="height: 10px;">
+            <div class="progress-bar ${barColor}" id="modalBarraProgreso"></div>
+          </div>
+          <div class="small text-muted mb-3">Avance hacia la meta mensual: <strong>${data.porcentaje}%</strong></div>
+          <ul class="list-group list-group-flush small">
+            <li class="list-group-item d-flex justify-content-between px-0">
+              <span>Respuestas "NO" en el mes</span>
+              <strong>${data.cant_no_mes}</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between px-0">
+              <span>Última auditoría registrada</span>
+              <strong>${data.ultima_auditoria || "Sin registros"}</strong>
+            </li>
+          </ul>
+        `;
+
+        const barraModal = document.getElementById("modalBarraProgreso");
+        if (barraModal) {
+          barraModal.style.width = `${data.porcentaje}%`;
+        }
+      })
+      .catch(() => {
+        cuerpo.innerHTML = '<div class="alert alert-danger mb-0">No se pudieron cargar las estadísticas.</div>';
+      });
+  });
+});
 </script>
 {% endblock %}

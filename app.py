@@ -22,7 +22,9 @@ from flask import (
     send_file,
     session,
     url_for,
+    jsonify,
 )
+
 from flask_mail import Mail, Message  # NUEVO: Para envío de correos
 from flask_wtf.csrf import CSRFProtect
 from PIL import Image, ImageOps  # NUEVO
@@ -767,6 +769,63 @@ def eliminar_usuario(user_id):
     flash(f"Usuario {usuario['email']} eliminado.", "ok")
   return redirect(url_for("admin_panel"))
 
+
+@app.route("/admin/estadisticas-usuario/<int:usuario_id>")
+@rol_required(ROL_ADMIN)
+def api_estadisticas_usuario(usuario_id):
+  db = get_db()
+  usuario = db.execute(
+      "SELECT id, nombre, email, rol, activo FROM usuarios WHERE id = ?",
+      (usuario_id,),
+  ).fetchone()
+  if not usuario:
+    return jsonify({"error": "Usuario no encontrado"}), 404
+
+  meta_mensual = 4
+  mes = request.args.get("mes") or datetime.now().strftime("%Y-%m")
+
+  realizadas_mes = db.execute(
+      "SELECT COUNT(*) FROM auditorias WHERE usuario_id = ? AND substr(fecha, 1, 7) = ?",
+      (usuario_id, mes),
+  ).fetchone()[0]
+
+  total_historico = db.execute(
+      "SELECT COUNT(*) FROM auditorias WHERE usuario_id = ?",
+      (usuario_id,),
+  ).fetchone()[0]
+
+  cant_no_mes = db.execute(
+      """
+      SELECT COALESCE(SUM(CASE WHEN r.respuesta = 'no' THEN 1 ELSE 0 END), 0)
+      FROM auditorias a
+      LEFT JOIN auditoria_respuestas r ON r.auditoria_id = a.id
+      WHERE a.usuario_id = ? AND substr(a.fecha, 1, 7) = ?
+      """,
+      (usuario_id, mes),
+  ).fetchone()[0]
+
+  ultima = db.execute(
+      "SELECT fecha, titulo FROM auditorias WHERE usuario_id = ? ORDER BY id DESC LIMIT 1",
+      (usuario_id,),
+  ).fetchone()
+
+  faltantes_meta = max(0, meta_mensual - realizadas_mes)
+  porcentaje = min(100, int((realizadas_mes / meta_mensual) * 100))
+
+  return jsonify({
+      "usuario_id": usuario["id"],
+      "nombre": usuario["nombre"] or usuario["email"],
+      "email": usuario["email"],
+      "mes": mes,
+      "realizadas_mes": realizadas_mes,
+      "meta_mensual": meta_mensual,
+      "faltantes_meta": faltantes_meta,
+      "porcentaje": porcentaje,
+      "cumplio_meta": realizadas_mes >= meta_mensual,
+      "total_historico": total_historico,
+      "cant_no_mes": cant_no_mes,
+      "ultima_auditoria": f"{ultima['fecha']} ({ultima['titulo']})" if ultima else None,
+  })
 
 # ============================ Gestión de secciones ============================
 @app.route("/secciones/nueva", methods=["POST"])
