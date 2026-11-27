@@ -163,8 +163,85 @@
         {% else %}
           <tr><td colspan="5" class="text-secondary">Sin auditorías este mes.</td></tr>
         {% endfor %}
+      </tbody>{% if incumplidores %}
+<div class="alert alert-danger border-danger mb-4" role="alert">
+  <h6 class="alert-heading fw-bold mb-1">
+    {% if mes_cerrado %}
+      Alerta de cierre ({{ mes }}): Supervisores que no completaron la meta de 4 auditorías
+    {% else %}
+      Alerta de fin de mes ({{ mes }}): Supervisores por debajo de la meta de 4 auditorías
+    {% endif %}
+  </h6>
+  <ul class="mb-0 small">
+    {% for inc in incumplidores %}
+      <li>
+        <strong>{{ inc.nombre }}</strong> ({{ inc.email }}): realizó
+        <strong>{{ inc.realizadas }}/4</strong> — le faltaron <strong>{{ inc.faltantes }}</strong>.
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<div class="card mb-4">
+  <div class="card-header bg-white fw-bold text-navy">
+    Estadísticas por supervisor — Mes {{ mes }} (Meta: 4)
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Supervisor</th>
+          <th>Correo</th>
+          <th>Realizadas</th>
+          <th>Faltantes</th>
+          <th>Cumplimiento</th>
+          <th>Puntos "NO"</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in resumen_supervisores %}
+        <tr>
+          <td class="fw-semibold">{{ s.nombre }}</td>
+          <td class="text-muted small">{{ s.email }}</td>
+          <td><strong>{{ s.realizadas }}</strong> / {{ s.meta }}</td>
+          <td>{{ s.faltantes }}</td>
+          <td style="min-width: 140px;">
+            <div class="progress" style="height: 8px;">
+              <div class="progress-bar {{ 'bg-success' if s.cumplio else 'bg-primary' }}"
+                   style="width: {{ s.porcentaje }}%;"></div>
+            </div>
+            <small class="text-muted">{{ s.porcentaje }}%</small>
+          </td>
+          <td>{{ s.cant_no }}</td>
+          <td>
+            {% if s.cumplio %}
+              <span class="badge bg-success">Meta cumplida</span>
+            {% elif mes_cerrado %}
+              <span class="badge bg-danger">No completó</span>
+            {% else %}
+              <span class="badge bg-warning text-dark">Pendiente</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td colspan="7" class="text-center text-muted py-3">No hay supervisores registrados.</td>
+        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
 </div>
+    </table>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".progress-bar[data-width]").forEach(function (bar) {
+      bar.style.width = bar.dataset.width + "%";
+    });
+  });
+</script>
 {% endblock %}

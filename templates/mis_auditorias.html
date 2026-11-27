@@ -226,6 +226,15 @@
         <h1>Mis auditorías</h1>
         <p class="subtitulo">Consulta tu avance mensual, revisa tus controles y descarga los PDF.</p>
 
+        {% if stats.alerta_fin_mes %}
+        <div class="alert alert-warning border-warning d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4" role="alert">
+            <div>
+                <strong>¡Atención! El mes está por finalizar ({{ stats.dias_restantes }} {{ 'día restante' if stats.dias_restantes == 1 else 'días restantes' }}).</strong>
+                Llevás <strong>{{ stats.realizadas_mes }}</strong> de <strong>{{ stats.meta_mensual }}</strong> auditorías este mes (mínimo sugerido antes del cierre: 3). Te faltan <strong>{{ stats.faltantes }}</strong>.
+            </div>
+            <a href="{{ url_for('inicio') }}" class="btn btn-sm btn-warning fw-bold">Hacer auditoría ahora</a>
+        </div>
+        {% endif %}
         <!-- Tarjetas de Estadísticas y Meta Mensual -->
         <section class="stats-grid">
             <div class="stat-box">

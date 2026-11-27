@@ -8,7 +8,8 @@ import threading
 from datetime import timedelta
 from functools import wraps
 from io import BytesIO
-
+import calendar
+from datetime import datetime
 import click
 from flask import (
     Flask,
@@ -392,7 +393,6 @@ def buscar_seccion(seccion_id):
 @rol_required(ROL_ADMIN, ROL_SUPERVISOR)
 def inicio():
   return render_template("index.html", secciones=todas_las_secciones())
-
 # ========================== Panel del Supervisor ==========================
 @app.route("/mis-auditorias")
 @rol_required(ROL_SUPERVISOR)
@@ -406,14 +406,22 @@ def mis_auditorias():
   ).fetchall()
 
   meta_mensual = 4
-  mes_actual = time.strftime("%Y-%m")
+  umbral_aviso = 3
+  hoy = datetime.now()
+  mes_actual = hoy.strftime("%Y-%m")
+  ultimo_dia = calendar.monthrange(hoy.year, hoy.month)[1]
+  dias_restantes = max(0, ultimo_dia - hoy.day)
 
-  # Contar cuántas auditorías hizo en el mes actual (YYYY-MM)
   realizadas_mes = sum(
       1 for a in auditorias if (a["fecha"] or "").startswith(mes_actual)
   )
   faltantes = max(0, meta_mensual - realizadas_mes)
   porcentaje = min(100, int((realizadas_mes / meta_mensual) * 100))
+
+  # Aviso cuando está finalizando el mes (5 días o menos) y lleva menos de 3
+  alerta_fin_mes = (
+      dias_restantes <= 5 and realizadas_mes < umbral_aviso
+  )
 
   estadisticas = {
       "mes_actual": mes_actual,
@@ -423,6 +431,8 @@ def mis_auditorias():
       "porcentaje": porcentaje,
       "total_historico": len(auditorias),
       "meta_cumplida": realizadas_mes >= meta_mensual,
+      "dias_restantes": dias_restantes,
+      "alerta_fin_mes": alerta_fin_mes,
   }
 
   return render_template(
@@ -445,7 +455,9 @@ def admin_panel():
   total_secciones = len(todas_las_secciones())
   total_auditorias = db.execute("SELECT COUNT(*) FROM auditorias").fetchone()[0]
 
-  mes_actual = time.strftime("%Y-%m")
+  meta_mensual = 4
+  hoy = datetime.now()
+  mes_actual = hoy.strftime("%Y-%m")
   mes = request.args.get("mes", mes_actual)
   usuario_sel = request.args.get("usuario", type=int)
   if usuario_sel not in ids_supervisores:
@@ -468,6 +480,53 @@ def admin_panel():
           (mes,),
       )
   }
+
+  # Conteo de respuestas "no" por supervisor en el mes seleccionado
+  no_por_usuario = {
+      r["usuario_id"]: r["total_no"]
+      for r in db.execute(
+          """
+          SELECT a.usuario_id,
+                 SUM(CASE WHEN r.respuesta = 'no' THEN 1 ELSE 0 END) AS total_no
+          FROM auditorias a
+          LEFT JOIN auditoria_respuestas r ON r.auditoria_id = a.id
+          WHERE substr(a.fecha, 1, 7) = ?
+          GROUP BY a.usuario_id
+          """,
+          (mes,),
+      )
+  }
+
+  # Si el mes consultado ya pasó respecto al mes actual, se considera mes cerrado
+  mes_cerrado = mes < mes_actual
+  ultimo_dia_actual = calendar.monthrange(hoy.year, hoy.month)[1]
+  dias_restantes_actual = max(0, ultimo_dia_actual - hoy.day)
+
+  resumen_supervisores = []
+  incumplidores = []
+
+  for sup in supervisores:
+    realizadas = conteo_mes.get(sup["id"], 0)
+    faltantes = max(0, meta_mensual - realizadas)
+    cumplio = realizadas >= meta_mensual
+    cant_no = no_por_usuario.get(sup["id"], 0) or 0
+
+    fila_sup = {
+        "id": sup["id"],
+        "nombre": sup["nombre"] or sup["email"],
+        "email": sup["email"],
+        "activo": sup["activo"],
+        "realizadas": realizadas,
+        "meta": meta_mensual,
+        "faltantes": faltantes,
+        "porcentaje": min(100, int((realizadas / meta_mensual) * 100)),
+        "cumplio": cumplio,
+        "cant_no": cant_no,
+    }
+    resumen_supervisores.append(fila_sup)
+
+    if not cumplio and (mes_cerrado or dias_restantes_actual <= 5):
+      incumplidores.append(fila_sup)
 
   ids_filtro = [usuario_sel] if usuario_sel else ids_supervisores
   auditorias_mes = []
@@ -500,8 +559,10 @@ def admin_panel():
       usuario_sel=usuario_sel,
       conteo_mes=conteo_mes,
       auditorias_mes=auditorias_mes,
+      resumen_supervisores=resumen_supervisores,
+      incumplidores=incumplidores,
+      mes_cerrado=mes_cerrado,
   )
-
 
 # ====================== Detalle y PDF de una auditoría ======================
 def cargar_auditoria(audit_id):
